@@ -1,0 +1,15 @@
+# Ignore OS-specific files
+.DS_Store
+
+# Ignore environment secrets
+.env
+.env.local
+
+# Backend specific
+/backend/log/*.log
+/backend/tmp/
+/backend/storage/
+
+# Frontend specific
+/frontend/node_modules/
+/frontend/dist/

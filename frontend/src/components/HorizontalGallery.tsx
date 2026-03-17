@@ -15,6 +15,34 @@ export function HorizontalGallery({ photos }: HorizontalGalleryProps) {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-white">
+      {/* Foggy white vignette + grain overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10"
+        aria-hidden
+      >
+        {/* Soft white vignette — fades from clear center to foggy edges */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,1) 100%)',
+          }}
+        />
+        {/* Film grain layer */}
+        <svg className="absolute inset-0 h-full w-full opacity-[0.15] mix-blend-overlay" aria-hidden>
+          <filter id="grain">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.85"
+              numOctaves="4"
+              stitchTiles="stitch"
+              result="noise"
+            />
+            <feColorMatrix type="saturate" values="0" in="noise" result="noise" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#grain)" />
+        </svg>
+      </div>
       <motion.div
         className="flex h-full will-change-transform items-center gap-[0.002vw] pl-[.002vw]"
         style={{ width: 'max-content' }}

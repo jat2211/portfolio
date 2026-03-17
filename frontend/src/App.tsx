@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ScrollBackground } from './components/ScrollBackground';
+import { HorizontalGallery } from './components/HorizontalGallery';
+import { FoldersSection } from './components/FoldersSection';
+import { mockPhotos } from './data/mockPhotos';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ScrollBackground>
+      <nav className="fixed left-0 right-0 top-0 z-10 flex justify-between px-6 py-4">
+        <span className="text-[10px] tracking-widest text-white/90">
+          RECORD STORE
+        </span>
+        <div className="flex gap-8">
+          <a
+            href="#gallery"
+            className="text-[10px] tracking-widest text-white/70 hover:text-white"
+          >
+            GALLERY
+          </a>
+          <a
+            href="#folders"
+            className="text-[10px] tracking-widest text-white/70 hover:text-white"
+          >
+            FOLDERS
+          </a>
+        </div>
+      </nav>
+      <main>
+        <section id="gallery" className="relative pt-16">
+          <HorizontalGallery photos={mockPhotos} />
+        </section>
+        <section id="folders">
+          <FoldersSection photos={mockPhotos} />
+        </section>
+      </main>
+    </ScrollBackground>
+  );
 }
 
-export default App
+export default App;

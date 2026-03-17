@@ -25,7 +25,7 @@ export function HorizontalGallery({ photos }: HorizontalGalleryProps) {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,1) 100%)',
+              'radial-gradient(ellipse 65% 50% at 50% 50%, transparent 0%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.5) 75%, rgba(255,255,255,1) 100%)',
           }}
         />
         {/* Film grain layer */}

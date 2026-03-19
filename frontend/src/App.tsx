@@ -7,19 +7,19 @@ function App() {
   return (
     <ScrollBackground>
       <nav className="fixed left-0 right-0 top-0 z-10 flex justify-between px-6 py-4">
-        <span className="text-[10px] tracking-widest text-white/90">
-          RECORD STORE
+        <span className="text-[10px] tracking-widest text-black/90">
+          vino.mp4
         </span>
         <div className="flex gap-8">
           <a
             href="#gallery"
-            className="text-[10px] tracking-widest text-white/70 hover:text-white"
+            className="text-[10px] tracking-widest text-black/70 hover:text-black"
           >
             GALLERY
           </a>
           <a
             href="#folders"
-            className="text-[10px] tracking-widest text-white/70 hover:text-white"
+            className="text-[10px] tracking-widest text-black/70 hover:text-black"
           >
             FOLDERS
           </a>
@@ -30,7 +30,7 @@ function App() {
           <HorizontalGallery photos={mockPhotos} />
         </section>
         <section id="folders">
-          <FoldersSection photos={mockPhotos} />
+          <FoldersSection />
         </section>
       </main>
     </ScrollBackground>

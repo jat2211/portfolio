@@ -14,7 +14,7 @@ export function HorizontalGallery({ photos }: HorizontalGalleryProps) {
   const duplicatedPhotos = [...photos, ...photos];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-white">
+    <section className="relative flex h-screen w-full flex-col overflow-hidden bg-white">
       {/* Foggy white vignette + grain overlay */}
       <div
         className="pointer-events-none absolute inset-0 z-10"
@@ -43,8 +43,14 @@ export function HorizontalGallery({ photos }: HorizontalGalleryProps) {
           <rect width="100%" height="100%" filter="url(#grain)" />
         </svg>
       </div>
+
+      {/* Minimalist title above the horizontal gallery */}
+      <h1 className="relative z-[11] select-none pt-24 pb-36 text-center font-[75] text-[clamp(48px,8vw,96px)] leading-none tracking-[0.01em] text-black/70">
+        @vino.mp4
+      </h1>
+
       <motion.div
-        className="flex h-full will-change-transform items-center gap-[0.002vw] pl-[.002vw]"
+        className="flex flex-1 will-change-transform items-start gap-[0.002vw] pl-[.002vw]"
         style={{ width: 'max-content' }}
         animate={{ x: [0, '-30%'] }}
         transition={{
@@ -103,6 +109,17 @@ function GalleryCard({ photo, onClick }: GalleryCardProps) {
           skewY: '15deg',
           transformStyle: 'preserve-3d',
         }}
+        whileHover={{
+          // Lift independently (no in-plane Z rotation), and only rotate towards
+          // the user on the Y axis. Keep skew unchanged so card edges stay
+          // visually parallel with neighboring cards.
+          x: -24,
+          y: -70,
+          rotateY: '-25deg',
+          skewY: '15deg',
+          scale: 1,
+        }}
+        transition={{ type: 'spring', stiffness: 260, damping: 120 }}
       >
         <img
           src={photo.url}

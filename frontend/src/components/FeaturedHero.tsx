@@ -6,7 +6,7 @@ interface FeaturedHeroProps {
 
 export function FeaturedHero({ photo }: FeaturedHeroProps) {
   return (
-    <div className="relative h-[100dvh] min-h-[100dvh] w-full overflow-hidden">
+    <div className="relative h-full min-h-[100dvh] w-full overflow-hidden">
       <img
         src={photo.url}
         alt={photo.title}

@@ -6,20 +6,20 @@ import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 function App() {
   return (
     <div className="min-h-full bg-black text-white">
-      <nav className="fixed left-0 right-0 top-0 z-30 flex justify-between px-6 py-4 mix-blend-difference">
-        <span className="text-[10px] tracking-widest text-white">
+      <nav className="fixed left-0 right-0 top-0 z-30 flex justify-between px-6 py-4 text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)]">
+        <span className="text-xs tracking-widest">
           vino.mp4
         </span>
         <div className="flex gap-8">
           <a
             href="#hero"
-            className="text-[10px] tracking-widest text-white/80 hover:text-white"
+            className="text-xs tracking-widest text-white hover:text-white/90"
           >
             GALLERY
           </a>
           <a
             href="#folders"
-            className="text-[10px] tracking-widest text-white/80 hover:text-white"
+            className="text-xs tracking-widest text-white hover:text-white/90"
           >
             FOLDERS
           </a>

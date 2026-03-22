@@ -17,3 +17,6 @@ export const mockPhotos: Photo[] = [
   { id: '14', url: 'https://picsum.photos/seed/n/800/1000', title: 'Untitled 14' },
   { id: '15', url: 'https://picsum.photos/seed/o/800/1000', title: 'Untitled 15' },
 ];
+
+export const featuredPhoto = mockPhotos[0]!;
+export const galleryPhotos = mockPhotos.slice(1);

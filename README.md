@@ -49,5 +49,9 @@ API:
 
 ## Tech
 
-- **Frontend:** React 19, Vite 8, TypeScript, Tailwind CSS, Framer Motion, Axios
+- **Frontend:** React 19, Vite 8, TypeScript, Tailwind CSS, Framer Motion, GSAP, [Paper Shaders](https://github.com/paper-design/shaders) (`@paper-design/shaders-react` metaball background), Axios
 - **AI Tagger:** FastAPI, Google Generative AI (Gemini), Pillow, Pydantic Settings, Uvicorn
+
+## Credits
+
+Scroll-linked background uses [Paper Shaders](https://github.com/paper-design/shaders) ([shaders.paper.design](https://shaders.paper.design/)).

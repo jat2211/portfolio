@@ -13,9 +13,13 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
       <img
         src={photo.url}
         alt={photo.title}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover grayscale"
         decoding="async"
         fetchPriority="high"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-black/5"
+        aria-hidden
       />
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/10"

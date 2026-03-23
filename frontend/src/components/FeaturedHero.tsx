@@ -27,13 +27,19 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         aria-hidden
       />
       <motion.div
-        className="pointer-events-none absolute bottom-0 left-0 px-6 pb-8 pt-4 sm:pb-10"
+        className="pointer-events-none absolute bottom-0 left-0 px-8 pb-4 pt-4 sm:pb-5"
         initial={reducedMotion ? false : { opacity: 0 }}
         animate={reducedMotion ? undefined : { opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
-        <p className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl md:text-9xl">
-          Visual Media
+        <p className="text-6xl font-black leading-none tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-7xl md:text-[10.5rem]">
+          <span className="relative inline-block align-baseline">
+            <span className="absolute bottom-full left-0 block translate-x-[5rem] translate-y-10 whitespace-nowrap text-[1.1875rem] font-medium tracking-widest text-white/90 drop-shadow-[0_1px_15px_rgba(0,0,0,0.4)] sm:translate-x-[8rem] sm:text-[1.3125rem] md:translate-x-[10.5rem] md:translate-y-12 md:text-[1.5625rem]">
+              - By vino.mp4 -----
+            </span>
+            Visual
+          </span>{' '}
+          Media
         </p>
       </motion.div>
       <motion.div

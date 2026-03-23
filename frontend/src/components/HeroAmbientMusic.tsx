@@ -106,7 +106,7 @@ export function HeroAmbientMusic() {
   useEffect(() => () => teardown(), [teardown]);
 
   return (
-    <div className="pointer-events-auto absolute bottom-0 right-0 px-6 pb-8 pt-4 sm:pb-10">
+    <div className="pointer-events-auto absolute bottom-3.5 right-2 px-10 pb-8 pt-4 sm:pb-10">
       <button
         type="button"
         onClick={toggle}

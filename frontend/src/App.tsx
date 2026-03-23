@@ -10,7 +10,7 @@ function App() {
     <div className="min-h-full bg-black text-white">
       <nav className="fixed left-0 right-0 top-0 z-30 flex justify-between px-6 py-4 text-white">
         <span className="text-sm font-medium tracking-widest sm:text-base">
-          vino.mp4
+          @vino.mp4
         </span>
         <div className="flex gap-8">
           <a

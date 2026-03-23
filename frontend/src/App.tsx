@@ -1,4 +1,5 @@
 import { AllVisualMediaArchive } from './components/AllVisualMediaArchive';
+import { AboutResumeContactSection } from './components/AboutResumeContactSection';
 import { CurtainIntroSection } from './components/CurtainIntroSection';
 import { CustomCursor } from './components/CustomCursor';
 import { FeaturedHero } from './components/FeaturedHero';
@@ -48,6 +49,7 @@ function App() {
               <AllVisualMediaArchive />
             </div>
           </div>
+          <AboutResumeContactSection />
         </div>
       </main>
     </div>

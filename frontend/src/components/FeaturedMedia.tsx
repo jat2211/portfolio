@@ -44,7 +44,7 @@ function GalleryItem({
             height={photo.height}
             loading="lazy"
             decoding="async"
-            className="block h-auto w-full max-w-full origin-center grayscale transition-[filter,transform] duration-500 ease-out group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:grayscale-0"
+            className="block h-auto w-full max-w-full grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0"
           />
         </button>
       </article>

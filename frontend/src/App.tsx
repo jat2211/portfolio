@@ -1,7 +1,8 @@
+import { AllVisualMediaArchive } from './components/AllVisualMediaArchive';
+import { CurtainIntroSection } from './components/CurtainIntroSection';
 import { FeaturedHero } from './components/FeaturedHero';
 import { FeaturedWorkHeader } from './components/FeaturedWorkHeader';
 import { StaggeredGallery } from './components/StaggeredGallery';
-import { FoldersSection } from './components/FoldersSection';
 import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
             GALLERY
           </a>
           <a
-            href="#folders"
+            href="#all-visual-media"
             className="text-sm font-medium tracking-widest text-white hover:text-white/90 sm:text-base"
           >
             FOLDERS
@@ -35,12 +36,19 @@ function App() {
         <div id="hero" className="h-[100dvh] shrink-0" aria-hidden />
         <div className="relative z-10 bg-black">
           <FeaturedWorkHeader />
-          <section id="stagger" className="relative">
+          {/* Gallery scrolls in full; no negative margin here so the mosaic does not keep moving under the curtain. */}
+          <section id="stagger" className="relative z-10">
             <StaggeredGallery photos={galleryPhotos} />
           </section>
-          <section id="folders">
-            <FoldersSection />
-          </section>
+          <div className="relative">
+            <div className="relative z-10">
+              <CurtainIntroSection />
+            </div>
+            {/* Archive pulls up sooner (~118dvh) so it overlaps while curtains are still opening. */}
+            <div className="relative z-20 -mt-[min(175dvh,175svh)]">
+              <AllVisualMediaArchive />
+            </div>
+          </div>
         </div>
       </main>
     </div>

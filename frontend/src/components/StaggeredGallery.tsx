@@ -86,7 +86,7 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
                     {photo.title}
                   </h2>
                   <div
-                    className="relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40"
+                    className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40"
                     style={aspectStyle(photo)}
                   >
                     <img
@@ -94,7 +94,7 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
                       alt={photo.title}
                       loading="lazy"
                       decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   </div>
                 </article>

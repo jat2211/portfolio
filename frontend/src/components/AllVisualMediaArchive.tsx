@@ -18,7 +18,7 @@ export function AllVisualMediaArchive() {
     <section
       id="all-visual-media"
       className="relative bg-black pb-24 pt-16 text-white md:pb-32 md:pt-20"
-      aria-label="All visual media archive"
+      aria-label="More work archive"
     >
       <div className="mx-auto max-w-[min(96rem,calc(100%-2rem))] px-4 md:px-6">
         <div className="flex flex-col gap-12 md:grid md:grid-cols-12 md:items-stretch md:gap-x-8 md:gap-y-10">
@@ -26,16 +26,12 @@ export function AllVisualMediaArchive() {
           <aside className="md:col-span-4">
             <div className="md:sticky md:top-[4.5rem] md:max-h-[calc(100dvh-4.5rem)] md:overflow-y-auto md:pr-2">
               {/* Header aligned with FeaturedWorkHeader */}
-              <header className="mb-10 space-y-2 md:mb-12">
+              <header className="mb-8 md:mb-10">
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-                  All visual media
+                  More work
                 </h2>
-                <p className="text-lg text-neutral-500 sm:text-xl">Browse by category</p>
               </header>
 
-              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.2em] text-white/45">
-                Categories
-              </p>
               <nav className="flex flex-row flex-wrap gap-3 md:flex-col md:gap-6" aria-label="Genre filters">
                 {genres.map((g) => (
                   <button
@@ -62,7 +58,7 @@ export function AllVisualMediaArchive() {
                 <li key={photo.id} className="min-w-0">
                   <figure className="space-y-2">
                     <div
-                      className="relative w-full overflow-hidden rounded-sm bg-neutral-900"
+                      className="group relative w-full overflow-hidden rounded-sm bg-neutral-900"
                       style={aspectStyle(photo)}
                     >
                       <img
@@ -70,7 +66,7 @@ export function AllVisualMediaArchive() {
                         alt={photo.title}
                         loading="lazy"
                         decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       />
                     </div>
                     <figcaption className="text-[10px] font-normal uppercase tracking-widest text-white/45">

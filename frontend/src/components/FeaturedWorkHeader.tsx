@@ -1,6 +1,16 @@
+import { motion, useReducedMotion } from 'framer-motion';
+
 export function FeaturedWorkHeader() {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <header className="flex flex-col gap-8 px-6 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+    <motion.header
+      className="flex flex-col gap-8 px-6 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
+      initial={reducedMotion ? false : { opacity: 0 }}
+      whileInView={reducedMotion ? undefined : { opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <div className="space-y-2">
         <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
           Featured Work
@@ -13,6 +23,6 @@ export function FeaturedWorkHeader() {
       >
         {"See All Work ->"}
       </a>
-    </header>
+    </motion.header>
   );
 }

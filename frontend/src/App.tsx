@@ -17,13 +17,13 @@ function App() {
             href="#hero"
             className="text-sm font-medium tracking-widest text-white hover:text-white/90 sm:text-base"
           >
-            GALLERY
+            Featured Work
           </a>
           <a
             href="#all-visual-media"
             className="text-sm font-medium tracking-widest text-white hover:text-white/90 sm:text-base"
           >
-            FOLDERS
+            Archive
           </a>
         </div>
       </nav>

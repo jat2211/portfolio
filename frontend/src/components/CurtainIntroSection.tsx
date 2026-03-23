@@ -49,7 +49,7 @@ export function CurtainIntroSection() {
 
   /** Fade title block in sync with vertical move (same scroll window as textY). */
   const textOpacity = useTransform(scrollYProgress, (p) =>
-    reducedMotion ? 1 : smoothstep((p - 0.08) / 0.24),
+    reducedMotion ? 1 : smoothstep((p - 0.08) / 0.04),
   );
 
   return (
@@ -78,10 +78,10 @@ export function CurtainIntroSection() {
             className="relative z-10 flex w-full max-w-5xl flex-col px-6"
             style={{ y: textY, opacity: textOpacity }}
           >
-            <h2 className="text-center text-5xl font-black lowercase tracking-tight sm:text-7xl md:text-9xl">
+            <h2 className="text-center text-5xl font-black lowercase tracking-tight text-white sm:text-7xl md:text-9xl">
               vino.mp4
             </h2>
-            <p className="mt-2 max-w-xl self-start pl-6 text-center text-xs font-medium uppercase tracking-[0.4em] text-neutral-600 sm:pl-60 sm:text-sm uppercase">
+            <p className="mt-2 max-w-xl self-start pl-6 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:pl-60 sm:text-sm uppercase">
               Visual media in NYC
             </p>
           </motion.div>

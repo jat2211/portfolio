@@ -1,5 +1,6 @@
 import { AllVisualMediaArchive } from './components/AllVisualMediaArchive';
 import { CurtainIntroSection } from './components/CurtainIntroSection';
+import { CustomCursor } from './components/CustomCursor';
 import { FeaturedHero } from './components/FeaturedHero';
 import { FeaturedWorkHeader } from './components/FeaturedWorkHeader';
 import { FeaturedMedia } from './components/FeaturedMedia';
@@ -8,6 +9,7 @@ import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 function App() {
   return (
     <div className="min-h-full bg-black text-white">
+      <CustomCursor />
       <nav className="fixed left-0 right-0 top-0 z-30 flex justify-between px-6 py-4 text-white">
         <span className="text-sm font-medium tracking-widest sm:text-base">
           @vino.mp4

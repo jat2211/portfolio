@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { HeroAmbientMusic } from './HeroAmbientMusic';
 import type { Photo } from '../types';
 
 interface FeaturedHeroProps {
@@ -34,6 +35,13 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         <p className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl md:text-9xl">
           Visual Media
         </p>
+      </motion.div>
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0 }}
+        animate={reducedMotion ? undefined : { opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.35 }}
+      >
+        <HeroAmbientMusic />
       </motion.div>
     </div>
   );

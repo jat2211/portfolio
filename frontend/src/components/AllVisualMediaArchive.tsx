@@ -1,14 +1,5 @@
-import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
-import type { GenrePlaceholder } from '../data/genres';
-
-function aspectStyle(photo: GenrePlaceholder): CSSProperties {
-  if (photo.width != null && photo.height != null) {
-    return { aspectRatio: `${photo.width} / ${photo.height}` };
-  }
-  return { aspectRatio: '4 / 5' };
-}
 
 export function AllVisualMediaArchive() {
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
@@ -16,6 +7,9 @@ export function AllVisualMediaArchive() {
   const active = genres.find((g) => g.id === activeGenreId) ?? genres[0]!;
   const selectedPhoto =
     active.photos.find((photo) => photo.id === selectedPhotoId) ?? null;
+
+  const leftColumnPhotos = active.photos.filter((_, index) => index % 2 === 0);
+  const rightColumnPhotos = active.photos.filter((_, index) => index % 2 === 1);
 
   useEffect(() => {
     setSelectedPhotoId(null);
@@ -77,34 +71,40 @@ export function AllVisualMediaArchive() {
             </div>
           </aside>
 
-          {/* Right two-thirds: image grid only */}
+          {/* Right two-thirds: two independent columns (no shared row heights) */}
           <div className="md:col-span-8 md:pt-2">
-            <ul className="grid grid-cols-2 gap-2 sm:gap-3">
-              {active.photos.map((photo) => (
-                <li key={photo.id} className="min-w-0">
-                  <figure className="space-y-2">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedPhotoId(photo.id)}
-                      className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                      aria-label={`Open ${photo.title} in fullscreen`}
-                      style={aspectStyle(photo)}
-                    >
-                      <img
-                        src={photo.url}
-                        alt={photo.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                      />
-                    </button>
-                    <figcaption className="text-[10px] font-normal uppercase tracking-widest text-white/45">
-                      {photo.title}
-                    </figcaption>
-                  </figure>
-                </li>
+            <div className="flex gap-2 sm:gap-3">
+              {[leftColumnPhotos, rightColumnPhotos].map((columnPhotos, columnIndex) => (
+                <ul
+                  key={columnIndex}
+                  className="flex min-w-0 flex-1 list-none flex-col gap-2 p-0 sm:gap-3"
+                >
+                  {columnPhotos.map((photo) => (
+                    <li key={photo.id} className="min-w-0">
+                      <figure className="space-y-2">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPhotoId(photo.id)}
+                          className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                          aria-label={`Open ${photo.title} in fullscreen`}
+                        >
+                          <img
+                            src={photo.url}
+                            alt={photo.title}
+                            loading="lazy"
+                            decoding="async"
+                            className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                          />
+                        </button>
+                        <figcaption className="text-[10px] font-normal uppercase tracking-widest text-white/45">
+                          {photo.title}
+                        </figcaption>
+                      </figure>
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

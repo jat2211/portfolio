@@ -58,10 +58,10 @@ export function CurtainIntroSection() {
       className="relative z-10 min-h-[260vh] bg-black"
       aria-label="Introduction"
     >
-      <div className="sticky top-0 isolate flex h-[100dvh] w-full overflow-x-hidden overflow-y-hidden">
-        <div className="absolute inset-0 z-0 flex items-center justify-center text-black">
+      <div className="sticky top-0 flex h-[100dvh] w-full overflow-x-hidden overflow-y-hidden">
+        <div className="absolute inset-0 z-0">
           <GrainGradient
-            className="pointer-events-none absolute inset-0 z-0"
+            className="pointer-events-none absolute inset-0"
             width="100%"
             height="100%"
             fit="cover"
@@ -69,22 +69,11 @@ export function CurtainIntroSection() {
             colorBack="#ffffff"
             softness={0.05}
             intensity={0.19}
-            noise={0}
+            noise={0.2}
             shape="blob"
             speed={reducedMotion ? 0 : 0.72}
             scale={1.16}
           />
-          <motion.div
-            className="relative z-10 flex w-full max-w-5xl flex-col px-6"
-            style={{ y: textY, opacity: textOpacity }}
-          >
-            <h2 className="text-center text-5xl font-black lowercase tracking-tight text-white sm:text-7xl md:text-9xl">
-              vino.mp4
-            </h2>
-            <p className="mt-2 max-w-xl self-start pl-6 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:pl-60 sm:text-sm uppercase">
-              Visual media in NYC
-            </p>
-          </motion.div>
         </div>
 
         <motion.div
@@ -97,6 +86,24 @@ export function CurtainIntroSection() {
           style={{ x: rightCurtainX }}
           aria-hidden
         />
+
+        {/*
+          White fill + mix-blend-difference on this same layer as y/opacity: a transformed
+          or non-opaque *ancestor* would isolate the blend and the text would stay plain white.
+        */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center mix-blend-difference"
+          style={{ y: textY, opacity: textOpacity }}
+        >
+          <div className="flex w-full max-w-5xl flex-col px-6">
+            <h2 className="text-center text-5xl font-black lowercase tracking-tight text-white sm:text-7xl md:text-9xl">
+              vino.mp4
+            </h2>
+            <p className="mt-2 max-w-xl self-start pl-6 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:pl-60 sm:text-sm uppercase">
+              Visual media in NYC
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

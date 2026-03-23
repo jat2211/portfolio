@@ -48,7 +48,7 @@ export function AllVisualMediaArchive() {
               {/* Header aligned with FeaturedWorkHeader */}
               <header className="mb-8 md:mb-10">
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-                  More work
+                  Media Archive
                 </h2>
               </header>
 
@@ -81,7 +81,7 @@ export function AllVisualMediaArchive() {
                 >
                   {columnPhotos.map((photo) => (
                     <li key={photo.id} className="min-w-0">
-                      <figure className="space-y-2">
+                      <figure>
                         <button
                           type="button"
                           onClick={() => setSelectedPhotoId(photo.id)}
@@ -96,9 +96,6 @@ export function AllVisualMediaArchive() {
                             className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                           />
                         </button>
-                        <figcaption className="text-[10px] font-normal uppercase tracking-widest text-white/45">
-                          {photo.title}
-                        </figcaption>
                       </figure>
                     </li>
                   ))}

@@ -2,7 +2,7 @@ import { AllVisualMediaArchive } from './components/AllVisualMediaArchive';
 import { CurtainIntroSection } from './components/CurtainIntroSection';
 import { FeaturedHero } from './components/FeaturedHero';
 import { FeaturedWorkHeader } from './components/FeaturedWorkHeader';
-import { StaggeredGallery } from './components/StaggeredGallery';
+import { FeaturedMedia } from './components/FeaturedMedia';
 import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
           <FeaturedWorkHeader />
           {/* Gallery scrolls in full; no negative margin here so the mosaic does not keep moving under the curtain. */}
           <section id="stagger" className="relative z-10">
-            <StaggeredGallery photos={galleryPhotos} />
+            <FeaturedMedia photos={galleryPhotos} />
           </section>
           <div className="relative">
             <div className="relative z-10">

@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 import type { Photo } from '../types';
 
 interface StaggeredGalleryProps {
@@ -163,13 +162,6 @@ const FEATURED_WORK_BANDS: FeaturedTilePlacement[][] =
 /** Extra photos after 12 cycle through these layouts in order. */
 const FALLBACK_TILES = FEATURED_TILES;
 
-function aspectStyle(photo: Photo): CSSProperties {
-  if (photo.width != null && photo.height != null) {
-    return { aspectRatio: `${photo.width} / ${photo.height}` };
-  }
-  return { aspectRatio: '4 / 5' };
-}
-
 type BandItem = { photo: Photo; placement: FeaturedTilePlacement };
 
 function groupPhotosIntoBands(photos: Photo[]): BandItem[][] {
@@ -219,7 +211,7 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
         {bands.map((items, bandIndex) => (
           <div
             key={bandIndex}
-            className={`grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:auto-rows-[minmax(13rem,auto)] lg:auto-rows-[minmax(14rem,auto)] ${bandOverlapClass(bandIndex)}`}
+            className={`grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:auto-rows-auto ${bandOverlapClass(bandIndex)}`}
           >
             {items.map(({ photo, placement }) => (
               <article
@@ -229,16 +221,15 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
                 <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55">
                   {photo.title}
                 </h2>
-                <div
-                  className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40"
-                  style={aspectStyle(photo)}
-                >
+                <div className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40">
                   <img
                     src={photo.url}
                     alt={photo.title}
+                    width={photo.width}
+                    height={photo.height}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    className="block h-auto w-full max-w-full origin-center transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                 </div>
               </article>

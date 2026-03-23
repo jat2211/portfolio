@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
 import type { GenrePlaceholder } from '../data/genres';
 
@@ -12,7 +12,33 @@ function aspectStyle(photo: GenrePlaceholder): CSSProperties {
 
 export function AllVisualMediaArchive() {
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
+  const [selectedPhotoId, setSelectedPhotoId] = useState<string | null>(null);
   const active = genres.find((g) => g.id === activeGenreId) ?? genres[0]!;
+  const selectedPhoto =
+    active.photos.find((photo) => photo.id === selectedPhotoId) ?? null;
+
+  useEffect(() => {
+    setSelectedPhotoId(null);
+  }, [activeGenreId]);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedPhotoId(null);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPhoto]);
 
   return (
     <section
@@ -57,8 +83,11 @@ export function AllVisualMediaArchive() {
               {active.photos.map((photo) => (
                 <li key={photo.id} className="min-w-0">
                   <figure className="space-y-2">
-                    <div
-                      className="group relative w-full overflow-hidden rounded-sm bg-neutral-900"
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPhotoId(photo.id)}
+                      className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                      aria-label={`Open ${photo.title} in fullscreen`}
                       style={aspectStyle(photo)}
                     >
                       <img
@@ -68,7 +97,7 @@ export function AllVisualMediaArchive() {
                         decoding="async"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       />
-                    </div>
+                    </button>
                     <figcaption className="text-[10px] font-normal uppercase tracking-widest text-white/45">
                       {photo.title}
                     </figcaption>
@@ -79,6 +108,33 @@ export function AllVisualMediaArchive() {
           </div>
         </div>
       </div>
+      {selectedPhoto ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedPhoto.title} preview`}
+          onClick={() => setSelectedPhotoId(null)}
+        >
+          <button
+            type="button"
+            className="absolute right-4 top-4 rounded bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white hover:bg-black/80"
+            onClick={() => setSelectedPhotoId(null)}
+            aria-label="Close fullscreen preview"
+          >
+            Close
+          </button>
+          <img
+            src={selectedPhoto.url}
+            alt={selectedPhoto.title}
+            width={selectedPhoto.width}
+            height={selectedPhoto.height}
+            className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
+            onClick={(event) => event.stopPropagation()}
+            decoding="async"
+          />
+        </div>
+      ) : null}
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { Photo } from '../types';
 
 interface StaggeredGalleryProps {
@@ -204,6 +205,26 @@ function bandOverlapClass(bandIndex: number): string {
 
 export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
   const bands = groupPhotosIntoBands(photos);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedPhoto(null);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPhoto]);
 
   return (
     <div className="w-full px-2 pb-32 pt-16 sm:px-3 md:px-4 md:pb-40 md:pt-24 lg:px-5">
@@ -221,7 +242,12 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
                 <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55">
                   {photo.title}
                 </h2>
-                <div className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40">
+                <button
+                  type="button"
+                  onClick={() => setSelectedPhoto(photo)}
+                  className="group relative block w-full overflow-hidden rounded-sm shadow-lg shadow-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                  aria-label={`Open ${photo.title} in fullscreen`}
+                >
                   <img
                     src={photo.url}
                     alt={photo.title}
@@ -231,12 +257,39 @@ export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
                     decoding="async"
                     className="block h-auto w-full max-w-full origin-center grayscale transition-[filter,transform] duration-500 ease-out group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:grayscale-0"
                   />
-                </div>
+                </button>
               </article>
             ))}
           </div>
         ))}
       </div>
+      {selectedPhoto ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedPhoto.title} preview`}
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <button
+            type="button"
+            className="absolute right-4 top-4 rounded bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white hover:bg-black/80"
+            onClick={() => setSelectedPhoto(null)}
+            aria-label="Close fullscreen preview"
+          >
+            Close
+          </button>
+          <img
+            src={selectedPhoto.url}
+            alt={selectedPhoto.title}
+            width={selectedPhoto.width}
+            height={selectedPhoto.height}
+            className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
+            onClick={(event) => event.stopPropagation()}
+            decoding="async"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

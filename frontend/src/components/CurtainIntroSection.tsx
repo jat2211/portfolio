@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { GrainGradient } from '@paper-design/shaders-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 function clamp01(x: number) {
@@ -48,7 +49,7 @@ export function CurtainIntroSection() {
 
   /** Fade title block in sync with vertical move (same scroll window as textY). */
   const textOpacity = useTransform(scrollYProgress, (p) =>
-    reducedMotion ? 1 : smoothstep((p - 0.12) / 0.24),
+    reducedMotion ? 1 : smoothstep((p - 0.08) / 0.24),
   );
 
   return (
@@ -58,9 +59,23 @@ export function CurtainIntroSection() {
       aria-label="Introduction"
     >
       <div className="sticky top-0 isolate flex h-[100dvh] w-full overflow-x-hidden overflow-y-hidden">
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-white text-black">
+        <div className="absolute inset-0 z-0 flex items-center justify-center text-black">
+          <GrainGradient
+            className="pointer-events-none absolute inset-0 z-0"
+            width="100%"
+            height="100%"
+            fit="cover"
+            colors={['#000000', '#ffffff', '#000000']}
+            colorBack="#ffffff"
+            softness={0.05}
+            intensity={0.19}
+            noise={0}
+            shape="blob"
+            speed={reducedMotion ? 0 : 0.72}
+            scale={1.16}
+          />
           <motion.div
-            className="flex w-full max-w-5xl flex-col px-6"
+            className="relative z-10 flex w-full max-w-5xl flex-col px-6"
             style={{ y: textY, opacity: textOpacity }}
           >
             <h2 className="text-center text-5xl font-black lowercase tracking-tight sm:text-7xl md:text-9xl">

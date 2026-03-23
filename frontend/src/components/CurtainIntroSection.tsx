@@ -1,6 +1,37 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+
+/**
+ * GrainGradient runs continuous WebGL; keep it mounted only while the sticky stage
+ * intersects the viewport and the tab is visible, so scrolling away does not load the GPU.
+ */
+function useRunGrainShader(stickyRef: React.RefObject<HTMLElement | null>) {
+  const [inView, setInView] = useState(true);
+  const [tabVisible, setTabVisible] = useState(
+    () => typeof document === 'undefined' || document.visibilityState === 'visible',
+  );
+
+  useEffect(() => {
+    const onVisibility = () => setTabVisible(document.visibilityState === 'visible');
+    document.addEventListener('visibilitychange', onVisibility);
+    onVisibility();
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
+  useEffect(() => {
+    const el = stickyRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setInView(e.isIntersecting),
+      { root: null, rootMargin: '48px', threshold: 0 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [stickyRef]);
+
+  return tabVisible && inView;
+}
 
 function clamp01(x: number) {
   return Math.max(0, Math.min(1, x));
@@ -22,6 +53,8 @@ function usePrefersReducedMotion() {
  */
 export function CurtainIntroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const runGrainShader = useRunGrainShader(stickyRef);
   const reducedMotion = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -58,22 +91,32 @@ export function CurtainIntroSection() {
       className="relative z-10 min-h-[260vh] bg-black"
       aria-label="Introduction"
     >
-      <div className="sticky top-0 flex h-[100dvh] w-full overflow-x-hidden overflow-y-hidden">
+      <div
+        ref={stickyRef}
+        className="sticky top-0 flex h-[100dvh] w-full overflow-x-hidden overflow-y-hidden"
+      >
         <div className="absolute inset-0 z-0">
-          <GrainGradient
-            className="pointer-events-none absolute inset-0"
-            width="100%"
-            height="100%"
-            fit="cover"
-            colors={['#000000', '#ffffff', '#000000']}
-            colorBack="#ffffff"
-            softness={0.05}
-            intensity={0.19}
-            noise={0.2}
-            shape="blob"
-            speed={reducedMotion ? 0 : 0.72}
-            scale={1.16}
-          />
+          {runGrainShader ? (
+            <GrainGradient
+              className="pointer-events-none absolute inset-0"
+              width="100%"
+              height="100%"
+              fit="cover"
+              colors={['#000000', '#ffffff', '#000000']}
+              colorBack="#ffffff"
+              softness={0.05}
+              intensity={0.19}
+              noise={0.2}
+              shape="blob"
+              speed={reducedMotion ? 0 : 0.72}
+              scale={1.16}
+            />
+          ) : (
+            <div
+              className="pointer-events-none absolute inset-0 bg-white"
+              aria-hidden
+            />
+          )}
         </div>
 
         <motion.div

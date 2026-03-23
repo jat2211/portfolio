@@ -34,10 +34,9 @@ export function CustomCursor() {
 
   useEffect(() => {
     if (!finePointer || !active) return;
-    const prev = document.body.style.cursor;
-    document.body.style.cursor = 'none';
+    document.documentElement.classList.add('custom-cursor');
     return () => {
-      document.body.style.cursor = prev;
+      document.documentElement.classList.remove('custom-cursor');
     };
   }, [finePointer, active]);
 

@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  /* Links/buttons use UA cursor:pointer; override while the custom dot is active. */
+  html.custom-cursor,
+  html.custom-cursor * {
+    cursor: none !important;
+  }
+
   :root {
     font-synthesis: none;
     text-rendering: optimizeLegibility;

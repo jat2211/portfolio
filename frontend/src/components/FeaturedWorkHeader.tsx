@@ -5,7 +5,7 @@ export function FeaturedWorkHeader() {
 
   return (
     <motion.header
-      className="flex flex-col gap-8 px-6 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
+      className="flex flex-col gap-8 px-2 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:px-3 md:px-4 lg:px-5"
       initial={reducedMotion ? false : { opacity: 0 }}
       whileInView={reducedMotion ? undefined : { opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}

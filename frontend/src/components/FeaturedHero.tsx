@@ -27,8 +27,8 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         animate={reducedMotion ? undefined : { opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
-        <p className="text-sm font-medium uppercase tracking-[0.35em] text-white/90 sm:text-base">
-          Visual media
+        <p className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl md:text-9xl">
+          Visual Media
         </p>
       </motion.div>
     </div>

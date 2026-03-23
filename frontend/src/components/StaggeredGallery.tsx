@@ -5,37 +5,163 @@ interface StaggeredGalleryProps {
   photos: Photo[];
 }
 
-/** md+: 12-column explicit placement per tile. Mobile stacks via col-span-full. */
-const BAND1_PLACEMENT = [
-  'md:col-start-1 md:col-span-8 md:row-start-1 md:row-span-2 md:translate-y-3',
-  'md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-1 md:-translate-x-1',
-  'md:col-start-9 md:col-span-4 md:row-start-2 md:row-span-1',
-  'md:col-start-1 md:col-span-5 md:row-start-3 md:row-span-1 md:-translate-y-2',
-  'md:col-start-6 md:col-span-7 md:row-start-3 md:row-span-1 md:translate-x-2',
-] as const;
+/**
+ * Featured work: 12 bands (one image each). Edit `FEATURED_TILES` for placement.
+ * - columnStart / columnSpan: 12-column grid on md+ (narrower spans = smaller tiles).
+ * - Odd band indices (2nd, 4th, …) use negative margin + z-index to overlap the band above.
+ * - nudgeX / nudgeY: optional md+ transform (visual only).
+ */
 
-/** Second band: wide top, tall right, middle row split, full-width footer. */
-const BAND2_PLACEMENT = [
-  'md:col-start-1 md:col-span-8 md:row-start-1 md:row-span-1 md:translate-x-1',
-  'md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-2 md:-translate-y-2',
-  'md:col-start-1 md:col-span-5 md:row-start-2 md:row-span-1',
-  'md:col-start-6 md:col-span-3 md:row-start-2 md:row-span-1 md:translate-y-4',
-  'md:col-start-1 md:col-span-12 md:row-start-3 md:row-span-1',
-] as const;
+/** 1–12 → full `md:col-start-*` (literal strings for Tailwind). */
+const MD_COL_START: Record<number, string> = {
+  1: 'md:col-start-1',
+  2: 'md:col-start-2',
+  3: 'md:col-start-3',
+  4: 'md:col-start-4',
+  5: 'md:col-start-5',
+  6: 'md:col-start-6',
+  7: 'md:col-start-7',
+  8: 'md:col-start-8',
+  9: 'md:col-start-9',
+  10: 'md:col-start-10',
+  11: 'md:col-start-11',
+  12: 'md:col-start-12',
+};
 
-/** Third band: large left stack, narrow right stack, wide closing strip. */
-const BAND3_PLACEMENT = [
-  'md:col-start-1 md:col-span-8 md:row-start-1 md:row-span-2 md:translate-y-2',
-  'md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-1',
-  'md:col-start-9 md:col-span-4 md:row-start-2 md:row-span-1 md:-translate-x-1',
-  'md:col-start-1 md:col-span-12 md:row-start-3 md:row-span-1 md:-translate-y-3',
-] as const;
+/** 1–12 → full `md:col-span-*`. */
+const MD_COL_SPAN: Record<number, string> = {
+  1: 'md:col-span-1',
+  2: 'md:col-span-2',
+  3: 'md:col-span-3',
+  4: 'md:col-span-4',
+  5: 'md:col-span-5',
+  6: 'md:col-span-6',
+  7: 'md:col-span-7',
+  8: 'md:col-span-8',
+  9: 'md:col-span-9',
+  10: 'md:col-span-10',
+  11: 'md:col-span-11',
+  12: 'md:col-span-12',
+};
 
-const BAND_SLICES = [
-  { len: BAND1_PLACEMENT.length, placement: BAND1_PLACEMENT },
-  { len: BAND2_PLACEMENT.length, placement: BAND2_PLACEMENT },
-  { len: BAND3_PLACEMENT.length, placement: BAND3_PLACEMENT },
-] as const;
+/** 1–12 → full `md:row-start-*` (per-band row index). */
+const MD_ROW_START: Record<number, string> = {
+  1: 'md:row-start-1',
+  2: 'md:row-start-2',
+  3: 'md:row-start-3',
+  4: 'md:row-start-4',
+  5: 'md:row-start-5',
+  6: 'md:row-start-6',
+  7: 'md:row-start-7',
+  8: 'md:row-start-8',
+  9: 'md:row-start-9',
+  10: 'md:row-start-10',
+  11: 'md:row-start-11',
+  12: 'md:row-start-12',
+};
+
+/** 1–6 → full `md:row-span-*`. */
+const MD_ROW_SPAN: Record<number, string> = {
+  1: 'md:row-span-1',
+  2: 'md:row-span-2',
+  3: 'md:row-span-3',
+  4: 'md:row-span-4',
+  5: 'md:row-span-5',
+  6: 'md:row-span-6',
+};
+
+/**
+ * Tailwind translate steps on md+ (0.25rem per unit). Add a map entry if you use a new step.
+ * Negative Y nudges upward (overlap row above); positive Y nudges down (visual only).
+ */
+const MD_NUDGE_X: Record<number, string> = {
+  [-4]: 'md:-translate-x-4',
+  [-3]: 'md:-translate-x-3',
+  [-2]: 'md:-translate-x-2',
+  [-1]: 'md:-translate-x-1',
+  1: 'md:translate-x-1',
+  2: 'md:translate-x-2',
+  3: 'md:translate-x-3',
+  4: 'md:translate-x-4',
+};
+
+const MD_NUDGE_Y: Record<number, string> = {
+  [-6]: 'md:-translate-y-6',
+  [-5]: 'md:-translate-y-5',
+  [-4]: 'md:-translate-y-4',
+  [-3]: 'md:-translate-y-3',
+  [-2]: 'md:-translate-y-2',
+  [-1]: 'md:-translate-y-1',
+  1: 'md:translate-y-1',
+  2: 'md:translate-y-2',
+  3: 'md:translate-y-3',
+  4: 'md:translate-y-4',
+  5: 'md:translate-y-5',
+  6: 'md:translate-y-6',
+};
+
+interface FeaturedTilePlacement {
+  /** Grid column start line, 1–12 (md+). */
+  columnStart: number;
+  /** Column span, 1–12 (md+). */
+  columnSpan: number;
+  /** Row start within this band’s grid, 1–12 (md+). */
+  rowStart: number;
+  /** Row span, 1–6 (md+). */
+  rowSpan: number;
+  /** Horizontal nudge in Tailwind steps (md+); omit or 0 for none. */
+  nudgeX?: number;
+  /** Vertical nudge in Tailwind steps (md+); omit or 0 for none. */
+  nudgeY?: number;
+}
+
+function mdPlacementClasses(tile: FeaturedTilePlacement): string {
+  const colStart = MD_COL_START[tile.columnStart];
+  const colSpan = MD_COL_SPAN[tile.columnSpan];
+  const rowStart = MD_ROW_START[tile.rowStart];
+  const rowSpan = MD_ROW_SPAN[tile.rowSpan];
+  if (!colStart || !colSpan || !rowStart || !rowSpan) {
+    console.warn('[StaggeredGallery] Invalid grid placement', tile);
+    return '';
+  }
+  const nudgeX =
+    tile.nudgeX != null && tile.nudgeX !== 0
+      ? (MD_NUDGE_X[tile.nudgeX] ?? '')
+      : '';
+  const nudgeY =
+    tile.nudgeY != null && tile.nudgeY !== 0
+      ? (MD_NUDGE_Y[tile.nudgeY] ?? '')
+      : '';
+  return [colStart, colSpan, rowStart, rowSpan, nudgeX, nudgeY]
+    .filter(Boolean)
+    .join(' ');
+}
+
+/**
+ * Twelve bands × one tile each. Spans are narrower than full-bleed for a slightly smaller look;
+ * column starts vary (including centered clusters) for placement diversity.
+ */
+const FEATURED_TILES: FeaturedTilePlacement[] = [
+  { columnStart: 1, columnSpan: 5, rowStart: 1, rowSpan: 1, nudgeY: 0 },
+  { columnStart: 8, columnSpan: 4, rowStart: 1, rowSpan: 1, nudgeY: -6 },
+  { columnStart: 4, columnSpan: 5, rowStart: 1, rowSpan: 1, nudgeY: -5 },
+  { columnStart: 8, columnSpan: 4, rowStart: 2, rowSpan: 1, nudgeY: 5},
+  { columnStart: 3, columnSpan: 3, rowStart: 2, rowSpan: 1, nudgeY: 6 },
+  { columnStart: 8, columnSpan: 3, rowStart: 1, rowSpan: 1, nudgeY: -6 },
+  { columnStart: 5, columnSpan: 5, rowStart: 1, rowSpan: 1 },
+  { columnStart: 2, columnSpan: 3, rowStart: 2, rowSpan: 1, nudgeY: 6 },
+  { columnStart: 6, columnSpan: 5, rowStart: 1, rowSpan: 1, nudgeY: -6 },
+  { columnStart: 3, columnSpan: 4, rowStart: 2, rowSpan: 1 },
+  { columnStart: 6, columnSpan: 5, rowStart: 1, rowSpan: 1, nudgeY: 2 },
+  { columnStart: 2, columnSpan: 3, rowStart: 1, rowSpan: 1, nudgeX: -1 },
+];
+
+/** One CSS grid per band (rows always restart at 1). */
+const FEATURED_WORK_BANDS: FeaturedTilePlacement[][] =
+  FEATURED_TILES.map((tile) => [tile]);
+
+/** Extra photos after 12 cycle through these layouts in order. */
+const FALLBACK_TILES = FEATURED_TILES;
 
 function aspectStyle(photo: Photo): CSSProperties {
   if (photo.width != null && photo.height != null) {
@@ -44,62 +170,79 @@ function aspectStyle(photo: Photo): CSSProperties {
   return { aspectRatio: '4 / 5' };
 }
 
-function splitIntoBands(photos: Photo[]) {
-  const bands: { photos: Photo[]; placement: readonly string[] }[] = [];
-  let offset = 0;
-  for (const { len, placement } of BAND_SLICES) {
-    const slice = photos.slice(offset, offset + len);
+type BandItem = { photo: Photo; placement: FeaturedTilePlacement };
+
+function groupPhotosIntoBands(photos: Photo[]): BandItem[][] {
+  const bands: BandItem[][] = [];
+  let index = 0;
+
+  for (const placements of FEATURED_WORK_BANDS) {
+    const slice = photos.slice(index, index + placements.length);
     if (slice.length === 0) break;
-    bands.push({ photos: slice, placement });
-    offset += len;
+    bands.push(
+      slice.map((photo, i) => ({
+        photo,
+        placement: placements[i]!,
+      })),
+    );
+    index += placements.length;
   }
-  if (offset < photos.length) {
-    const rest = photos.slice(offset);
-    bands.push({
-      photos: rest,
-      placement: BAND3_PLACEMENT,
-    });
+
+  if (index < photos.length) {
+    const rest = photos.slice(index);
+    for (let i = 0; i < rest.length; i++) {
+      bands.push([
+        {
+          photo: rest[i]!,
+          placement: FALLBACK_TILES[i % FALLBACK_TILES.length]!,
+        },
+      ]);
+    }
   }
+
   return bands;
 }
 
+/** Odd-index bands pull up so they overlap the previous image (pairwise 1–2, 3–4, …). */
+function bandOverlapClass(bandIndex: number): string {
+  const isPulledUp = bandIndex % 2 === 1;
+  if (!isPulledUp) return 'relative z-0';
+  return 'relative z-10 -mt-10 md:-mt-[5.5rem] lg:-mt-28';
+}
+
 export function StaggeredGallery({ photos }: StaggeredGalleryProps) {
-  const bands = splitIntoBands(photos);
+  const bands = groupPhotosIntoBands(photos);
 
   return (
-    <div className="mx-auto max-w-[min(90rem,calc(100%-2rem))] px-5 pb-32 pt-16 md:px-8 md:pb-40 md:pt-24">
-      <div className="flex flex-col gap-20 md:gap-28 lg:gap-36">
-        {bands.map((band, bandIdx) => (
+    <div className="w-full px-2 pb-32 pt-16 sm:px-3 md:px-4 md:pb-40 md:pt-24 lg:px-5">
+      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
+        {bands.map((items, bandIndex) => (
           <div
-            key={bandIdx}
-            className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:auto-rows-[minmax(14rem,auto)]"
+            key={bandIndex}
+            className={`grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-6 md:gap-y-8 md:auto-rows-[minmax(13rem,auto)] lg:auto-rows-[minmax(14rem,auto)] ${bandOverlapClass(bandIndex)}`}
           >
-            {/* Band {bandIdx + 1}: 12-col mosaic on md+; explicit col/row spans per tile */}
-            {band.photos.map((photo, i) => {
-              const placement = band.placement[i % band.placement.length] ?? '';
-              return (
-                <article
-                  key={photo.id}
-                  className={`col-span-full ${placement} w-full`}
+            {items.map(({ photo, placement }) => (
+              <article
+                key={photo.id}
+                className={`col-span-full ${mdPlacementClasses(placement)} w-full`}
+              >
+                <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55">
+                  {photo.title}
+                </h2>
+                <div
+                  className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40"
+                  style={aspectStyle(photo)}
                 >
-                  <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55">
-                    {photo.title}
-                  </h2>
-                  <div
-                    className="group relative w-full overflow-hidden rounded-sm shadow-lg shadow-black/40"
-                    style={aspectStyle(photo)}
-                  >
-                    <img
-                      src={photo.url}
-                      alt={photo.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                    />
-                  </div>
-                </article>
-              );
-            })}
+                  <img
+                    src={photo.url}
+                    alt={photo.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  />
+                </div>
+              </article>
+            ))}
           </div>
         ))}
       </div>

@@ -4,8 +4,8 @@ import { useRedLight } from '../hooks/useRedLight';
 import { ExifOverlay } from './ExifOverlay';
 import { SafelightImage } from './SafelightImage';
 
-const CHROME_BTN =
-  'rounded bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 darkroom:bg-red-950/80 darkroom:text-red-100 darkroom:hover:bg-red-900/90 darkroom:focus-visible:ring-red-400/70';
+const TEXT_LINK =
+  'text-xs font-medium uppercase tracking-widest focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70';
 
 interface PhotoLightboxProps {
   photo: Photo;
@@ -29,7 +29,7 @@ export function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
     >
       <button
         type="button"
-        className={`absolute right-4 top-4 ${CHROME_BTN}`}
+        className={`absolute right-4 top-4 ${TEXT_LINK} text-white/90 hover:text-white darkroom:text-red-200 darkroom:hover:text-red-50 darkroom:focus-visible:outline-red-400/80`}
         onClick={(e) => {
           e.stopPropagation();
           onClose();
@@ -64,17 +64,17 @@ export function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
       <div className="pointer-events-none absolute inset-x-0 flex justify-end px-4 sm:px-6 bottom-[max(2rem,env(safe-area-inset-bottom,0px))]">
         <button
           type="button"
-          className={`pointer-events-auto ${CHROME_BTN}`}
+          className={`pointer-events-auto ${TEXT_LINK} text-white/90 hover:text-white darkroom:text-red-200 darkroom:hover:text-red-50 darkroom:focus-visible:outline-red-400/80`}
           onClick={(e) => {
             e.stopPropagation();
             toggle();
           }}
           aria-pressed={safelightOn}
           aria-label={
-            safelightOn ? 'Turn off safelight mode' : 'Turn on safelight mode'
+            safelightOn ? 'Safelight is on, turn off' : 'Safelight is off, turn on'
           }
         >
-          {safelightOn ? 'Safelight on' : 'Safelight'}
+          {safelightOn ? 'Safelight on' : 'Safelight off'}
         </button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Photo } from '../types';
+import { useRedLight } from '../hooks/useRedLight';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 import { ExifOverlay } from './ExifOverlay';
 import { PhotoLightbox } from './PhotoLightbox';
@@ -82,10 +83,17 @@ function GalleryItem({
 }
 
 export function Gallery({ photos }: GalleryProps) {
+  const { setEnabled } = useRedLight();
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const columnPhotos = [0, 1, 2].map((k) =>
     photos.filter((_, index) => index % 3 === k),
   );
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      setEnabled(false);
+    }
+  }, [selectedPhoto, setEnabled]);
 
   useEffect(() => {
     if (!selectedPhoto) return;

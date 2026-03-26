@@ -6,32 +6,20 @@ import { DarkroomEffects } from './components/DarkroomEffects';
 import { Hero } from './components/Hero';
 import { GalleryHeader } from './components/GalleryHeader';
 import { Gallery } from './components/Gallery';
-import { useRedLight } from './hooks/useRedLight';
 import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 
 function App() {
-  const { enabled: safelightOn, setEnabled } = useRedLight();
-
   return (
     <div className="min-h-full bg-black text-white darkroom:bg-[#0a0000] darkroom:text-red-100">
       <CustomCursor />
       <DarkroomEffects />
-      <nav className="fixed left-0 right-0 top-0 z-30 flex items-center justify-between gap-3 px-6 py-4 text-white darkroom:border-b darkroom:border-red-950/50 darkroom:bg-[#0a0000]/95 darkroom:text-red-100">
+      <nav className="fixed left-0 right-0 top-0 z-30 flex items-center justify-between px-6 py-4 text-white darkroom:text-red-100">
         <div className="whitespace-nowrap">
           <span className="text-sm font-medium tracking-widest text-white sm:text-base darkroom:text-red-100">
             @vino.mp4
           </span>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-3 sm:gap-6 md:gap-8">
-          {safelightOn ? (
-            <button
-              type="button"
-              onClick={() => setEnabled(false)}
-              className="text-xs font-medium uppercase tracking-widest text-red-200 underline decoration-red-400/60 underline-offset-4 transition-colors hover:text-red-50 sm:text-sm"
-            >
-              Exit safelight
-            </button>
-          ) : null}
+        <div className="flex gap-4 sm:gap-8">
           <a
             href="#hero"
             className="text-sm font-medium tracking-widest text-white hover:text-white/90 sm:text-base darkroom:text-red-200 darkroom:hover:text-red-50"

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
+import { useRedLight } from '../hooks/useRedLight';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 import { ExifOverlay } from './ExifOverlay';
 import { PhotoLightbox } from './PhotoLightbox';
 import { SafelightImage } from './SafelightImage';
 
 export function Archive() {
+  const { setEnabled } = useRedLight();
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
   const [selectedPhotoId, setSelectedPhotoId] = useState<string | null>(null);
   const active = genres.find((g) => g.id === activeGenreId) ?? genres[0]!;
@@ -14,6 +16,12 @@ export function Archive() {
 
   const leftColumnPhotos = active.photos.filter((_, index) => index % 2 === 0);
   const rightColumnPhotos = active.photos.filter((_, index) => index % 2 === 1);
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      setEnabled(false);
+    }
+  }, [selectedPhoto, setEnabled]);
 
   useEffect(() => {
     if (!selectedPhoto) return;

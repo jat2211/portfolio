@@ -49,7 +49,7 @@ function usePrefersReducedMotion() {
 
 /**
  * Full-bleed white + L/R black curtains; plain VINO title/subtitle (no card or shadow).
- * Title eases from slightly below center to ~⅓ from viewport top (⅔ up from bottom).
+ * Title eases from slightly below center to ~1/6 from viewport top (5/6 up from bottom).
  */
 export function CurtainIntroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -72,11 +72,10 @@ export function CurtainIntroSection() {
 
   const textY = useTransform(scrollYProgress, (p) => {
     const h = typeof window !== 'undefined' ? window.innerHeight : 900;
-    /** From flex center: move up so block center sits ~33% from top → -0.17 * h */
-    const endY = -Math.round(0.17 * h);
+    const endY = -Math.round((1 / 2.5) * h);
     if (reducedMotion) return endY;
-    const t = smoothstep((p - 0.04) / 0.48);
-    const startY = Math.round(0.07 * h);
+    const t = smoothstep((p - 0.04) / 0.36);
+    const startY = Math.round(0.25 * h);
     return startY * (1 - t) + endY * t;
   });
 

@@ -6,19 +6,19 @@ export function AboutResumeContactSection() {
   return (
     <section
       id="about-resume-contact"
-      className="relative bg-[#f2f1e8] pb-24 pt-16 text-neutral-950 md:pb-32 md:pt-20"
+      className="relative z-[25] bg-[#f2f1e8] pb-24 pt-16 text-neutral-950 md:pb-32 md:pt-20"
       aria-label="About, resume, and contact"
     >
       <div className="mx-auto max-w-[min(96rem,calc(100%-2rem))] px-4 md:px-6">
-        <div className="flex flex-col gap-10 md:grid md:grid-cols-12 md:gap-x-10 md:gap-y-12">
-          <aside className="md:col-span-5">
+        <div className="flex min-h-0 flex-col gap-10 md:grid md:grid-cols-12 md:gap-x-10 md:gap-y-12">
+          <aside className="min-w-0 md:col-span-5">
             <div className="md:sticky md:top-8 md:max-h-[calc(100dvh-2rem)] md:overflow-y-auto">
               <div className="relative md:-mt-8 md:-ml-4 overflow-hidden rounded-sm bg-[#f2f1e8]">
                 <div className="pointer-events-none absolute inset-0 bg-[#f2f1e8]" aria-hidden />
-                <div className="relative aspect-[4/5] w-full">
+                <div className="relative aspect-[4/5] w-full max-w-full">
                   <HalftoneDots
-                    width={560}
-                    height={700}
+                    width="100%"
+                    height="100%"
                     image={PORTRAIT_IMAGE_PATH}
                     colorBack="#f2f1e8"
                     colorFront="#2b2b2b"
@@ -34,7 +34,7 @@ export function AboutResumeContactSection() {
                     grainSize={0.6}
                     scale={1}
                     fit="contain"
-                    className="h-full w-full"
+                    className="pointer-events-none absolute inset-0"
                   />
                 </div>
               </div>

@@ -42,7 +42,7 @@ function App() {
         <div className="relative z-10 bg-black">
           <FeaturedWorkHeader />
           {/* Gallery scrolls in full; no negative margin here so the mosaic does not keep moving under the curtain. */}
-          <section id="stagger" className="relative z-10">
+          <section id="stagger" className="relative">
             <FeaturedMedia photos={galleryPhotos} />
           </section>
           <div className="relative">

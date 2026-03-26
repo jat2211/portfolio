@@ -9,7 +9,7 @@ function getAudioContext(): AudioContext {
   return new Ctor();
 }
 
-export function HeroAmbientMusic() {
+export function Music() {
   const [playing, setPlaying] = useState(false);
   const ctxRef = useRef<AudioContext | null>(null);
   const masterRef = useRef<GainNode | null>(null);

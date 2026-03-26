@@ -51,7 +51,7 @@ function usePrefersReducedMotion() {
  * Full-bleed white + L/R black curtains; plain VINO title/subtitle (no card or shadow).
  * Title eases from slightly below center to ~1/6 from viewport top (5/6 up from bottom).
  */
-export function CurtainIntroSection() {
+export function Blob() {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const runGrainShader = useRunGrainShader(stickyRef);
@@ -87,6 +87,7 @@ export function CurtainIntroSection() {
   return (
     <section
       ref={sectionRef}
+      id="blob"
       className="relative z-10 min-h-[260vh] bg-black"
       aria-label="Introduction"
     >

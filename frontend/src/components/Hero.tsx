@@ -1,13 +1,13 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { HeroAmbientMusic } from './HeroAmbientMusic';
+import { Music } from './Music';
 import type { Photo } from '../types';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 
-interface FeaturedHeroProps {
+interface HeroProps {
   photo: Photo;
 }
 
-export function FeaturedHero({ photo }: FeaturedHeroProps) {
+export function Hero({ photo }: HeroProps) {
   const reducedMotion = useReducedMotion();
 
   return (
@@ -57,7 +57,7 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         animate={reducedMotion ? undefined : { opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.35 }}
       >
-        <HeroAmbientMusic />
+        <Music />
       </motion.div>
     </div>
   );

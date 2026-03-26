@@ -2,10 +2,10 @@ import { HalftoneDots } from '@paper-design/shaders-react';
 
 const PORTRAIT_IMAGE_PATH = '/artist/portrait.jpg';
 
-export function AboutResumeContactSection() {
+export function About() {
   return (
     <section
-      id="about-resume-contact"
+      id="about"
       className="relative z-[25] bg-[#f2f1e8] pb-24 pt-16 text-neutral-950 md:pb-32 md:pt-20"
       aria-label="About, resume, and contact"
     >

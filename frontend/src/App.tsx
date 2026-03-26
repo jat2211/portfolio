@@ -1,10 +1,10 @@
-import { AllVisualMediaArchive } from './components/AllVisualMediaArchive';
-import { AboutResumeContactSection } from './components/AboutResumeContactSection';
-import { CurtainIntroSection } from './components/CurtainIntroSection';
+import { Archive } from './components/Archive';
+import { About } from './components/About';
+import { Blob } from './components/Blob';
 import { CustomCursor } from './components/CustomCursor';
-import { FeaturedHero } from './components/FeaturedHero';
-import { FeaturedWorkHeader } from './components/FeaturedWorkHeader';
-import { FeaturedMedia } from './components/FeaturedMedia';
+import { Hero } from './components/Hero';
+import { GalleryHeader } from './components/GalleryHeader';
+import { Gallery } from './components/Gallery';
 import { featuredPhoto, galleryPhotos } from './data/mockPhotos';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
             Featured Work
           </a>
           <a
-            href="#all-visual-media"
+            href="#archive"
             className="text-sm font-medium tracking-widest text-white hover:text-white/90 sm:text-base"
           >
             Archive
@@ -35,26 +35,26 @@ function App() {
       <main className="relative">
         {/* Fixed hero: stays put while content below scrolls over it (scroll-over / curtain reveal). */}
         <div className="pointer-events-none fixed inset-0 z-0">
-          <FeaturedHero photo={featuredPhoto} />
+          <Hero photo={featuredPhoto} />
         </div>
         {/* In-flow height so the page can scroll past the viewport while the hero stays fixed. */}
         <div id="hero" className="h-[100dvh] shrink-0" aria-hidden />
         <div className="relative z-10 bg-black">
-          <FeaturedWorkHeader />
+          <GalleryHeader />
           {/* Gallery scrolls in full; no negative margin here so the mosaic does not keep moving under the curtain. */}
-          <section id="stagger" className="relative">
-            <FeaturedMedia photos={galleryPhotos} />
+          <section id="gallery" className="relative">
+            <Gallery photos={galleryPhotos} />
           </section>
           <div className="relative">
             <div className="relative z-10">
-              <CurtainIntroSection />
+              <Blob />
             </div>
             {/* Archive pulls up sooner (~118dvh) so it overlaps while curtains are still opening. */}
             <div className="relative z-20 -mt-[min(175dvh,175svh)]">
-              <AllVisualMediaArchive />
+              <Archive />
             </div>
           </div>
-          <AboutResumeContactSection />
+          <About />
         </div>
       </main>
     </div>

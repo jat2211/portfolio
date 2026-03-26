@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Photo } from '../types';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 
-interface FeaturedMediaProps {
+interface GalleryProps {
   photos: Photo[];
 }
 
@@ -71,7 +71,7 @@ function GalleryItem({
   );
 }
 
-export function FeaturedMedia({ photos }: FeaturedMediaProps) {
+export function Gallery({ photos }: GalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const columnPhotos = [0, 1, 2].map((k) =>
     photos.filter((_, index) => index % 3 === k),

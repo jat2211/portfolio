@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
-export function FeaturedWorkHeader() {
+export function GalleryHeader() {
   const reducedMotion = useReducedMotion();
 
   return (
@@ -18,7 +18,7 @@ export function FeaturedWorkHeader() {
         <p className="text-lg text-neutral-500 sm:text-xl">{"'23 - '25"}</p>
       </div>
       <a
-        href="#stagger"
+        href="#gallery"
         className="shrink-0 text-base font-medium tracking-wide text-white/80 transition-colors hover:text-white sm:pt-2 sm:text-lg"
       >
         {"See All Work ->"}

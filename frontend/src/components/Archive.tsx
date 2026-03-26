@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 
-export function AllVisualMediaArchive() {
+export function Archive() {
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
   const [selectedPhotoId, setSelectedPhotoId] = useState<string | null>(null);
   const active = genres.find((g) => g.id === activeGenreId) ?? genres[0]!;
@@ -33,7 +33,7 @@ export function AllVisualMediaArchive() {
 
   return (
     <section
-      id="all-visual-media"
+      id="archive"
       className="relative bg-black pb-24 pt-16 text-white md:pb-32 md:pt-20"
       aria-label="More work archive"
     >
@@ -42,7 +42,7 @@ export function AllVisualMediaArchive() {
           {/* Left third: stretch row height so sticky rail pins for full archive scroll */}
           <aside className="md:col-span-4">
             <div className="md:sticky md:top-[4.5rem] md:max-h-[calc(100dvh-4.5rem)] md:overflow-y-auto md:pr-2">
-              {/* Header aligned with FeaturedWorkHeader */}
+              {/* Header aligned with GalleryHeader */}
               <header className="mb-8 md:mb-10">
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
                   Media Archive

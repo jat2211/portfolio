@@ -33,12 +33,7 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
         <p className="text-6xl font-black leading-none tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-7xl md:text-[10.5rem]">
-          <span className="relative inline-block align-baseline">
-            <span className="absolute bottom-full left-0 block translate-x-[5rem] translate-y-10 whitespace-nowrap text-[1.1875rem] font-medium tracking-widest text-white/90 drop-shadow-[0_1px_15px_rgba(0,0,0,0.4)] sm:translate-x-[8rem] sm:text-[1.3125rem] md:translate-x-[10.5rem] md:translate-y-12 md:text-[1.5625rem]">
-              - By vino.mp4 -----
-            </span>
-            Visual
-          </span>{' '}
+          <span className="inline-block align-baseline">Visual</span>{' '}
           Media
         </p>
       </motion.div>

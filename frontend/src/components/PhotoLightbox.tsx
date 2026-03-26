@@ -27,17 +27,6 @@ export function PhotoLightbox({ photo, onClose }: PhotoLightboxProps) {
       aria-label={`${photo.title} preview`}
       onClick={onClose}
     >
-      <button
-        type="button"
-        className={`absolute right-4 top-4 ${TEXT_LINK} text-white/90 hover:text-white darkroom:text-red-200 darkroom:hover:text-red-50 darkroom:focus-visible:outline-red-400/80`}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose();
-        }}
-        aria-label="Close fullscreen preview"
-      >
-        Close
-      </button>
       <div className="relative inline-block max-h-[92vh] max-w-[96vw]">
         <div
           className={`relative isolate overflow-hidden rounded-sm ${

@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { HeroAmbientMusic } from './HeroAmbientMusic';
 import type { Photo } from '../types';
+import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 
 interface FeaturedHeroProps {
   photo: Photo;
@@ -11,13 +12,26 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
 
   return (
     <div className="relative h-full min-h-[100dvh] w-full overflow-hidden">
-      <img
-        src={photo.url}
-        alt={photo.title}
-        className="absolute inset-0 h-full w-full object-cover grayscale"
-        decoding="async"
-        fetchPriority="high"
-      />
+      <picture>
+        {photo.avif?.length ? (
+          <source type="image/avif" srcSet={toSrcSet(photo.avif)} sizes="100vw" />
+        ) : null}
+        {photo.webp?.length ? (
+          <source type="image/webp" srcSet={toSrcSet(photo.webp)} sizes="100vw" />
+        ) : null}
+        <img
+          src={fallbackUrl(photo)}
+          srcSet={toSrcSet(photo.jpg)}
+          sizes="100vw"
+          width={photo.width}
+          height={photo.height}
+          alt={photo.title}
+          className="absolute inset-0 h-full w-full object-cover grayscale"
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
+        />
+      </picture>
       <div
         className="pointer-events-none absolute inset-0 bg-black/5"
         aria-hidden

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Photo } from '../types';
+import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 
 interface FeaturedMediaProps {
   photos: Photo[];
@@ -37,15 +38,33 @@ function GalleryItem({
           className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 shadow-lg shadow-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           aria-label={`Open ${photo.title} in fullscreen`}
         >
-          <img
-            src={photo.url}
-            alt={photo.title}
-            width={photo.width}
-            height={photo.height}
-            loading="lazy"
-            decoding="async"
-            className="block h-auto w-full max-w-full grayscale transition-[filter] duration-1000 ease-out group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0"
-          />
+          <picture>
+            {photo.avif?.length ? (
+              <source
+                type="image/avif"
+                srcSet={toSrcSet(photo.avif)}
+                sizes="(min-width: 768px) 33vw, 100vw"
+              />
+            ) : null}
+            {photo.webp?.length ? (
+              <source
+                type="image/webp"
+                srcSet={toSrcSet(photo.webp)}
+                sizes="(min-width: 768px) 33vw, 100vw"
+              />
+            ) : null}
+            <img
+              src={fallbackUrl(photo)}
+              srcSet={toSrcSet(photo.jpg)}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              alt={photo.title}
+              width={photo.width}
+              height={photo.height}
+              loading="lazy"
+              decoding="async"
+              className="block h-auto w-full max-w-full grayscale transition-[filter] duration-1000 ease-out group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0"
+            />
+          </picture>
         </button>
       </article>
     </li>
@@ -122,7 +141,9 @@ export function FeaturedMedia({ photos }: FeaturedMediaProps) {
             Close
           </button>
           <img
-            src={selectedPhoto.url}
+            src={fallbackUrl(selectedPhoto)}
+            srcSet={toSrcSet(selectedPhoto.jpg)}
+            sizes="96vw"
             alt={selectedPhoto.title}
             width={selectedPhoto.width}
             height={selectedPhoto.height}

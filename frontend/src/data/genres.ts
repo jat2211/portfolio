@@ -1,4 +1,4 @@
-import { genrePublicUrls } from './publicMediaManifest';
+import { genrePublicImages } from './publicMediaManifest';
 
 export interface GenrePlaceholder {
   id: string;
@@ -6,6 +6,9 @@ export interface GenrePlaceholder {
   title: string;
   width?: number;
   height?: number;
+  jpg?: { url: string; width: number }[];
+  webp?: { url: string; width: number }[];
+  avif?: { url: string; width: number }[];
 }
 
 export interface Genre {
@@ -22,14 +25,19 @@ const GENRE_DEFS: { id: string; label: string }[] = [
 ];
 
 export const genres: Genre[] = GENRE_DEFS.map(({ id, label }) => {
-  const urls = genrePublicUrls[id] ?? [];
+  const images = genrePublicImages[id] ?? [];
   return {
     id,
     label,
-    photos: urls.map((url, i) => ({
+    photos: images.map((image, i) => ({
       id: `${id}-${i}`,
-      url,
+      url: image.jpg[image.jpg.length - 1]?.url ?? '',
       title: `Work ${String(i + 1).padStart(2, '0')}`,
+      width: image.width,
+      height: image.height,
+      jpg: [...image.jpg],
+      webp: [...image.webp],
+      avif: [...image.avif],
     })),
   };
 });

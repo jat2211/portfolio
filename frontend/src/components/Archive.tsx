@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
+import { ExifOverlay } from './ExifOverlay';
 
 export function Archive() {
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
@@ -115,6 +116,11 @@ export function Archive() {
                               className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                             />
                           </picture>
+                          <ExifOverlay
+                            exif={photo.exif}
+                            emphasizeOnHover
+                            className="absolute bottom-2 left-2 z-10 max-w-[calc(100%-1rem)] drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]"
+                          />
                         </button>
                       </figure>
                     </li>
@@ -141,17 +147,23 @@ export function Archive() {
           >
             Close
           </button>
-          <img
-            src={fallbackUrl(selectedPhoto)}
-            srcSet={toSrcSet(selectedPhoto.jpg)}
-            sizes="96vw"
-            alt={selectedPhoto.title}
-            width={selectedPhoto.width}
-            height={selectedPhoto.height}
-            className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
-            onClick={(event) => event.stopPropagation()}
-            decoding="async"
-          />
+          <div className="relative inline-block max-h-[92vh] max-w-[96vw]">
+            <img
+              src={fallbackUrl(selectedPhoto)}
+              srcSet={toSrcSet(selectedPhoto.jpg)}
+              sizes="96vw"
+              alt={selectedPhoto.title}
+              width={selectedPhoto.width}
+              height={selectedPhoto.height}
+              className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
+              onClick={(event) => event.stopPropagation()}
+              decoding="async"
+            />
+            <ExifOverlay
+              exif={selectedPhoto.exif}
+              className="absolute bottom-2 left-2 max-w-[min(96vw-1rem,42rem)] drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]"
+            />
+          </div>
         </div>
       ) : null}
     </section>

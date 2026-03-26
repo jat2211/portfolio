@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import exifr from 'exifr';
 import imageSize from 'image-size';
 import sharp from 'sharp';
 
@@ -43,10 +44,67 @@ function cappedWidths(widths, originalWidth) {
 }
 
 /**
+ * Rationalize EXIF numbers (exifr may return plain numbers or { numerator, denominator }).
+ * @param {unknown} v
+ * @returns {number | undefined}
+ */
+function exifNumber(v) {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  if (
+    v &&
+    typeof v === 'object' &&
+    'numerator' in v &&
+    'denominator' in v &&
+    typeof v.numerator === 'number' &&
+    typeof v.denominator === 'number' &&
+    v.denominator !== 0
+  ) {
+    const n = v.numerator / v.denominator;
+    return Number.isFinite(n) ? n : undefined;
+  }
+  return undefined;
+}
+
+/**
+ * EXIF from original file (optimized derivatives strip metadata).
+ * JPEG only; other formats typically lack usable camera EXIF here.
+ * @param {string} absPath
+ * @returns {Promise<{ iso?: number; aperture?: number; exposureTimeSec?: number } | undefined>}
+ */
+async function extractExifFromSource(absPath) {
+  if (!/\.jpe?g$/i.test(absPath)) return undefined;
+  try {
+    const buf = fs.readFileSync(absPath);
+    const tags = await exifr.parse(buf, {
+      pick: ['ISO', 'FNumber', 'ExposureTime', 'ISOSpeedRatings'],
+    });
+    if (!tags || typeof tags !== 'object') return undefined;
+    /** @type {{ iso?: number; aperture?: number; exposureTimeSec?: number }} */
+    const out = {};
+    const isoRaw = tags.ISO ?? tags.ISOSpeedRatings;
+    const iso =
+      typeof isoRaw === 'number'
+        ? isoRaw
+        : Array.isArray(isoRaw) && typeof isoRaw[0] === 'number'
+          ? isoRaw[0]
+          : undefined;
+    if (Number.isFinite(iso)) out.iso = iso;
+    const ap = exifNumber(tags.FNumber);
+    if (ap !== undefined) out.aperture = ap;
+    const exp = exifNumber(tags.ExposureTime);
+    if (exp !== undefined) out.exposureTimeSec = exp;
+    if (Object.keys(out).length === 0) return undefined;
+    return out;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
  * @param {string} relPosix e.g. "gallery/bw"
  * @param {string} fileName
  * @param {number[]} targets
- * @returns {Promise<{ width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[] }>}
+ * @returns {Promise<{ width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[]; exif?: { iso?: number; aperture?: number; exposureTimeSec?: number } }>}
  */
 async function createPublicImage(relPosix, fileName, targets) {
   const abs = path.join(publicDir, ...relPosix.split('/'), fileName);
@@ -143,13 +201,14 @@ async function createPublicImage(relPosix, fileName, targets) {
     jpg.push({ url: originalUrl, width });
   }
 
-  return { width, height, jpg, webp, avif };
+  const exif = await extractExifFromSource(abs);
+  return exif ? { width, height, jpg, webp, avif, exif } : { width, height, jpg, webp, avif };
 }
 
 /**
  * @param {string} relPosix
  * @param {number[]} targets
- * @returns {Promise<{ width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[] }[]>}
+ * @returns {Promise<{ width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[]; exif?: { iso?: number; aperture?: number; exposureTimeSec?: number } }[]>}
  */
 async function buildGallery(relPosix, targets) {
   const names = listImageNames(relPosix);
@@ -163,7 +222,7 @@ async function buildGallery(relPosix, targets) {
 const heroGallery = await buildGallery('hero', HERO_WIDTHS);
 const featuredGallery = await buildGallery('gallery/featured', GALLERY_WIDTHS);
 
-/** @type {Record<string, { width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[] }[]>} */
+/** @type {Record<string, { width: number; height: number; jpg: { url: string; width: number }[]; webp: { url: string; width: number }[]; avif: { url: string; width: number }[]; exif?: { iso?: number; aperture?: number; exposureTimeSec?: number } }[]>} */
 const genrePublicImages = Object.fromEntries(
   await Promise.all(
     GENRE_IDS.map(async (id) => [id, await buildGallery(`gallery/${id}`, GALLERY_WIDTHS)]),
@@ -178,12 +237,19 @@ export interface PublicImageVariant {
   readonly width: number;
 }
 
+export interface PublicImageExif {
+  readonly iso?: number;
+  readonly aperture?: number;
+  readonly exposureTimeSec?: number;
+}
+
 export interface PublicImage {
   readonly width: number;
   readonly height: number;
   readonly jpg: PublicImageVariant[];
   readonly webp: PublicImageVariant[];
   readonly avif: PublicImageVariant[];
+  readonly exif?: PublicImageExif;
 }
 
 export const heroGallery: PublicImage[] = ${JSON.stringify(heroGallery, null, 2)};

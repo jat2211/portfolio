@@ -1,3 +1,4 @@
+import type { ExifData } from '../types';
 import { genrePublicImages } from './publicMediaManifest';
 
 export interface GenrePlaceholder {
@@ -9,6 +10,7 @@ export interface GenrePlaceholder {
   jpg?: { url: string; width: number }[];
   webp?: { url: string; width: number }[];
   avif?: { url: string; width: number }[];
+  exif?: ExifData;
 }
 
 export interface Genre {
@@ -38,6 +40,7 @@ export const genres: Genre[] = GENRE_DEFS.map(({ id, label }) => {
       jpg: [...image.jpg],
       webp: [...image.webp],
       avif: [...image.avif],
+      ...(image.exif ? { exif: image.exif } : {}),
     })),
   };
 });

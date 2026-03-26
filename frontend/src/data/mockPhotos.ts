@@ -1,5 +1,6 @@
 import type { Photo } from '../types';
 import { featuredGallery, heroGallery } from './publicMediaManifest';
+import type { PublicImage } from './publicMediaManifest';
 
 const FALLBACK_HERO = 'https://picsum.photos/seed/hero-fallback/1920/1080';
 
@@ -8,13 +9,7 @@ function bestJpgUrl(item: { jpg: readonly { url: string }[] }): string {
 }
 
 function photosFromGalleryItems(
-  items: readonly {
-    width: number;
-    height: number;
-    jpg: readonly { url: string; width: number }[];
-    webp: readonly { url: string; width: number }[];
-    avif: readonly { url: string; width: number }[];
-  }[],
+  items: readonly PublicImage[],
   idPrefix: string,
 ): Photo[] {
   return items.map((item, i) => ({
@@ -26,6 +21,7 @@ function photosFromGalleryItems(
     jpg: [...item.jpg],
     webp: [...item.webp],
     avif: [...item.avif],
+    ...(item.exif ? { exif: item.exif } : {}),
   }));
 }
 
@@ -45,6 +41,7 @@ export const featuredPhoto: Photo = {
         jpg: [...primaryHeroItem.jpg],
         webp: [...primaryHeroItem.webp],
         avif: [...primaryHeroItem.avif],
+        ...(primaryHeroItem.exif ? { exif: primaryHeroItem.exif } : {}),
       }
     : {}),
 };

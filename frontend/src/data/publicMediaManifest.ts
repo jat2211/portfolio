@@ -6,12 +6,19 @@ export interface PublicImageVariant {
   readonly width: number;
 }
 
+export interface PublicImageExif {
+  readonly iso?: number;
+  readonly aperture?: number;
+  readonly exposureTimeSec?: number;
+}
+
 export interface PublicImage {
   readonly width: number;
   readonly height: number;
   readonly jpg: PublicImageVariant[];
   readonly webp: PublicImageVariant[];
   readonly avif: PublicImageVariant[];
+  readonly exif?: PublicImageExif;
 }
 
 export const heroGallery: PublicImage[] = [
@@ -95,7 +102,12 @@ export const heroGallery: PublicImage[] = [
         "url": "/_optimized/hero/1734066180384-503132957-6000.avif",
         "width": 6000
       }
-    ]
+    ],
+    "exif": {
+      "iso": 6400,
+      "aperture": 1.8,
+      "exposureTimeSec": 0.0125
+    }
   }
 ];
 
@@ -168,7 +180,11 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/1734065395770-537681133-3280.avif",
         "width": 3280
       }
-    ]
+    ],
+    "exif": {
+      "iso": 2500,
+      "exposureTimeSec": 0.004
+    }
   },
   {
     "width": 4000,
@@ -238,7 +254,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/1734065508950-385634406-4000.avif",
         "width": 4000
       }
-    ]
+    ],
+    "exif": {
+      "iso": 800,
+      "aperture": 1.8,
+      "exposureTimeSec": 0.004
+    }
   },
   {
     "width": 4000,
@@ -308,7 +329,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/1734066160338-665205057-4000.avif",
         "width": 4000
       }
-    ]
+    ],
+    "exif": {
+      "iso": 800,
+      "aperture": 1.8,
+      "exposureTimeSec": 0.06666666666666667
+    }
   },
   {
     "width": 3527,
@@ -378,7 +404,11 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/1734066888247-726289103-3527.avif",
         "width": 3527
       }
-    ]
+    ],
+    "exif": {
+      "iso": 160,
+      "exposureTimeSec": 0.00025
+    }
   },
   {
     "width": 3414,
@@ -448,7 +478,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/1734066888253-502748387-3414.avif",
         "width": 3414
       }
-    ]
+    ],
+    "exif": {
+      "iso": 3200,
+      "aperture": 1.8,
+      "exposureTimeSec": 0.004
+    }
   },
   {
     "width": 3709,
@@ -518,7 +553,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9082-3709.avif",
         "width": 3709
       }
-    ]
+    ],
+    "exif": {
+      "iso": 5000,
+      "aperture": 5,
+      "exposureTimeSec": 0.001
+    }
   },
   {
     "width": 4640,
@@ -588,7 +628,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9094-4640.avif",
         "width": 4640
       }
-    ]
+    ],
+    "exif": {
+      "iso": 5000,
+      "aperture": 5,
+      "exposureTimeSec": 0.001
+    }
   },
   {
     "width": 4469,
@@ -658,7 +703,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9426-4469.avif",
         "width": 4469
       }
-    ]
+    ],
+    "exif": {
+      "iso": 8000,
+      "aperture": 3.5,
+      "exposureTimeSec": 0.00125
+    }
   },
   {
     "width": 3895,
@@ -728,7 +778,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9461-3895.avif",
         "width": 3895
       }
-    ]
+    ],
+    "exif": {
+      "iso": 10000,
+      "aperture": 5.6,
+      "exposureTimeSec": 0.0015625
+    }
   },
   {
     "width": 3954,
@@ -798,7 +853,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9475-3954.avif",
         "width": 3954
       }
-    ]
+    ],
+    "exif": {
+      "iso": 6400,
+      "aperture": 6.3,
+      "exposureTimeSec": 0.000625
+    }
   },
   {
     "width": 4314,
@@ -868,7 +928,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9821-4314.avif",
         "width": 4314
       }
-    ]
+    ],
+    "exif": {
+      "iso": 1600,
+      "aperture": 7.1,
+      "exposureTimeSec": 0.000625
+    }
   },
   {
     "width": 4397,
@@ -938,7 +1003,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9862-4397.avif",
         "width": 4397
       }
-    ]
+    ],
+    "exif": {
+      "iso": 5000,
+      "aperture": 5,
+      "exposureTimeSec": 0.0005
+    }
   },
   {
     "width": 4029,
@@ -1008,7 +1078,12 @@ export const featuredGallery: PublicImage[] = [
         "url": "/_optimized/gallery/featured/CR7_9884-4029.avif",
         "width": 4029
       }
-    ]
+    ],
+    "exif": {
+      "iso": 5000,
+      "aperture": 5.6,
+      "exposureTimeSec": 0.001
+    }
   }
 ];
 
@@ -1082,7 +1157,11 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/portraits/1733012032458-223128579-3790.avif",
           "width": 3790
         }
-      ]
+      ],
+      "exif": {
+        "iso": 8000,
+        "exposureTimeSec": 0.004
+      }
     },
     {
       "width": 4000,
@@ -1152,7 +1231,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/portraits/1734065475526-303611542-4000.avif",
           "width": 4000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 100,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.5
+      }
     },
     {
       "width": 6450,
@@ -1222,7 +1306,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/portraits/1734065686566-562344094-6450.avif",
           "width": 6450
         }
-      ]
+      ],
+      "exif": {
+        "iso": 5000,
+        "aperture": 2.8,
+        "exposureTimeSec": 0.00625
+      }
     },
     {
       "width": 3552,
@@ -1362,7 +1451,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/portraits/1734066142496-58978677-4000.avif",
           "width": 4000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 800,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.04
+      }
     },
     {
       "width": 6000,
@@ -1432,7 +1526,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/portraits/1734066180384-503132957-6000.avif",
           "width": 6000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 6400,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.0125
+      }
     },
     {
       "width": 4000,
@@ -1444,7 +1543,11 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
         }
       ],
       "webp": [],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 3200,
+        "exposureTimeSec": 0.0025
+      }
     },
     {
       "width": 2935,
@@ -1493,7 +1596,11 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "width": 2935
         }
       ],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 160,
+        "exposureTimeSec": 0.00025
+      }
     },
     {
       "width": 3795,
@@ -1542,7 +1649,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "width": 3795
         }
       ],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 1600,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.004
+      }
     },
     {
       "width": 4151,
@@ -1591,7 +1703,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "width": 4151
         }
       ],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 800,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.004
+      }
     },
     {
       "width": 4640,
@@ -1640,7 +1757,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "width": 4640
         }
       ],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 1250,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.001
+      }
     },
     {
       "width": 3822,
@@ -1689,7 +1811,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "width": 3822
         }
       ],
-      "avif": []
+      "avif": [],
+      "exif": {
+        "iso": 640,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.001
+      }
     }
   ],
   "bw": [
@@ -1761,7 +1888,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.avif",
           "width": 4000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 100,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.5
+      }
     },
     {
       "width": 3450,
@@ -1831,7 +1963,11 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.avif",
           "width": 3450
         }
-      ]
+      ],
+      "exif": {
+        "iso": 400,
+        "exposureTimeSec": 0.125
+      }
     },
     {
       "width": 4000,
@@ -1901,7 +2037,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.avif",
           "width": 4000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 800,
+        "aperture": 4.5,
+        "exposureTimeSec": 0.003125
+      }
     },
     {
       "width": 3954,
@@ -1971,7 +2112,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/CR7_0410-3954.avif",
           "width": 3954
         }
-      ]
+      ],
+      "exif": {
+        "iso": 500,
+        "aperture": 4,
+        "exposureTimeSec": 0.001
+      }
     },
     {
       "width": 4233,
@@ -2041,7 +2187,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/CR7_0412-4233.avif",
           "width": 4233
         }
-      ]
+      ],
+      "exif": {
+        "iso": 500,
+        "aperture": 4,
+        "exposureTimeSec": 0.001
+      }
     },
     {
       "width": 5334,
@@ -2111,7 +2262,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/CR7_7766-5334.avif",
           "width": 5334
         }
-      ]
+      ],
+      "exif": {
+        "iso": 1250,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.001
+      }
     },
     {
       "width": 4381,
@@ -2181,7 +2337,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/bw/CR7_9705-4381.avif",
           "width": 4381
         }
-      ]
+      ],
+      "exif": {
+        "iso": 5000,
+        "aperture": 2,
+        "exposureTimeSec": 0.00125
+      }
     }
   ],
   "landscape": [
@@ -2253,7 +2414,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/landscape/CR7_9752-3950.avif",
           "width": 3950
         }
-      ]
+      ],
+      "exif": {
+        "iso": 1600,
+        "aperture": 5,
+        "exposureTimeSec": 0.0003125
+      }
     },
     {
       "width": 4478,
@@ -2323,7 +2489,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/landscape/CR7_9769-4478.avif",
           "width": 4478
         }
-      ]
+      ],
+      "exif": {
+        "iso": 1600,
+        "aperture": 8,
+        "exposureTimeSec": 0.0005
+      }
     }
   ],
   "street": [
@@ -2395,7 +2566,11 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/street/1734065564880-710151625-3450.avif",
           "width": 3450
         }
-      ]
+      ],
+      "exif": {
+        "iso": 400,
+        "exposureTimeSec": 0.125
+      }
     },
     {
       "width": 5377,
@@ -2465,7 +2640,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/street/1734065599018-930614260-5377.avif",
           "width": 5377
         }
-      ]
+      ],
+      "exif": {
+        "iso": 3200,
+        "aperture": 4,
+        "exposureTimeSec": 0.004
+      }
     },
     {
       "width": 4000,
@@ -2535,7 +2715,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/street/1734065615999-283697376-4000.avif",
           "width": 4000
         }
-      ]
+      ],
+      "exif": {
+        "iso": 800,
+        "aperture": 4.5,
+        "exposureTimeSec": 0.003125
+      }
     },
     {
       "width": 3954,
@@ -2605,7 +2790,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/street/CR7_0410-3954.avif",
           "width": 3954
         }
-      ]
+      ],
+      "exif": {
+        "iso": 500,
+        "aperture": 4,
+        "exposureTimeSec": 0.001
+      }
     },
     {
       "width": 6960,
@@ -2675,7 +2865,12 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
           "url": "/_optimized/gallery/street/CR7_7733-6960.avif",
           "width": 6960
         }
-      ]
+      ],
+      "exif": {
+        "iso": 400,
+        "aperture": 1.8,
+        "exposureTimeSec": 0.001
+      }
     }
   ]
 };

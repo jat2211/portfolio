@@ -45,7 +45,7 @@ export function CustomCursor() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed z-[100] h-2 w-2 rounded-full bg-white"
+      className="pointer-events-none fixed z-[100] h-2 w-2 rounded-full bg-white darkroom:bg-red-200"
       style={{ left: pos.x, top: pos.y, transform: 'translate(-50%, -50%)' }}
     />
   );

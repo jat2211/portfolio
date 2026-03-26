@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import type { Photo } from '../types';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 import { ExifOverlay } from './ExifOverlay';
+import { PhotoLightbox } from './PhotoLightbox';
+import { SafelightImage } from './SafelightImage';
 
 interface GalleryProps {
   photos: Photo[];
@@ -30,42 +32,44 @@ function GalleryItem({
   return (
     <li className="min-w-0">
       <article>
-        <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55">
+        <h2 className="mb-3 text-[10px] font-normal uppercase tracking-widest text-white/55 darkroom:text-red-300/70">
           {photo.title}
         </h2>
         <button
           type="button"
           onClick={() => onSelect(photo)}
-          className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 shadow-lg shadow-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 shadow-lg shadow-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 darkroom:bg-red-950/90 darkroom:shadow-red-950/50 darkroom:focus-visible:ring-red-400/60"
           aria-label={`Open ${photo.title} in fullscreen`}
         >
-          <picture>
-            {photo.avif?.length ? (
-              <source
-                type="image/avif"
-                srcSet={toSrcSet(photo.avif)}
+          <div className="relative isolate overflow-hidden darkroom:bg-[#3d0606]">
+            <picture>
+              {photo.avif?.length ? (
+                <source
+                  type="image/avif"
+                  srcSet={toSrcSet(photo.avif)}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              ) : null}
+              {photo.webp?.length ? (
+                <source
+                  type="image/webp"
+                  srcSet={toSrcSet(photo.webp)}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              ) : null}
+              <SafelightImage
+                src={fallbackUrl(photo)}
+                srcSet={toSrcSet(photo.jpg)}
                 sizes="(min-width: 768px) 33vw, 100vw"
+                alt={photo.title}
+                width={photo.width}
+                height={photo.height}
+                loading="lazy"
+                decoding="async"
+                className="block h-auto w-full max-w-full grayscale transition-[filter] duration-1000 ease-out group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0 darkroom:mix-blend-multiply darkroom:grayscale darkroom:group-hover:grayscale"
               />
-            ) : null}
-            {photo.webp?.length ? (
-              <source
-                type="image/webp"
-                srcSet={toSrcSet(photo.webp)}
-                sizes="(min-width: 768px) 33vw, 100vw"
-              />
-            ) : null}
-            <img
-              src={fallbackUrl(photo)}
-              srcSet={toSrcSet(photo.jpg)}
-              sizes="(min-width: 768px) 33vw, 100vw"
-              alt={photo.title}
-              width={photo.width}
-              height={photo.height}
-              loading="lazy"
-              decoding="async"
-              className="block h-auto w-full max-w-full grayscale transition-[filter] duration-1000 ease-out group-hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0"
-            />
-          </picture>
+            </picture>
+          </div>
           <ExifOverlay
             exif={photo.exif}
             emphasizeOnHover
@@ -131,39 +135,10 @@ export function Gallery({ photos }: GalleryProps) {
       </div>
 
       {selectedPhoto ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-8"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${selectedPhoto.title} preview`}
-          onClick={() => setSelectedPhoto(null)}
-        >
-          <button
-            type="button"
-            className="absolute right-4 top-4 rounded bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white hover:bg-black/80"
-            onClick={() => setSelectedPhoto(null)}
-            aria-label="Close fullscreen preview"
-          >
-            Close
-          </button>
-          <div className="relative inline-block max-h-[92vh] max-w-[96vw]">
-            <img
-              src={fallbackUrl(selectedPhoto)}
-              srcSet={toSrcSet(selectedPhoto.jpg)}
-              sizes="96vw"
-              alt={selectedPhoto.title}
-              width={selectedPhoto.width}
-              height={selectedPhoto.height}
-              className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
-              onClick={(event) => event.stopPropagation()}
-              decoding="async"
-            />
-            <ExifOverlay
-              exif={selectedPhoto.exif}
-              className="absolute bottom-2 left-2 max-w-[min(96vw-1rem,42rem)] drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]"
-            />
-          </div>
-        </div>
+        <PhotoLightbox
+          photo={selectedPhoto}
+          onClose={() => setSelectedPhoto(null)}
+        />
       ) : null}
     </div>
   );

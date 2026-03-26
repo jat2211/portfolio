@@ -27,3 +27,28 @@
     min-width: 320px;
   }
 }
+
+@layer utilities {
+  @keyframes darkroom-grain-shift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-1.5%, 1%) scale(1.015);
+    }
+    66% {
+      transform: translate(1%, -0.8%) scale(0.992);
+    }
+  }
+
+  .animate-darkroom-grain-shift {
+    animation: darkroom-grain-shift 8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-darkroom-grain-shift {
+      animation: none;
+    }
+  }
+}

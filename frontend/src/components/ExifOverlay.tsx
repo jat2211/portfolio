@@ -56,8 +56,8 @@ export function ExifOverlay({
   const base =
     'pointer-events-none select-none text-[10px] font-medium uppercase tracking-widest';
   const tone = emphasizeOnHover
-    ? 'text-white/50 transition-colors duration-300 group-hover:text-white/85'
-    : 'text-white/55';
+    ? 'text-white/50 transition-colors duration-300 group-hover:text-white/85 darkroom:text-red-300/60 darkroom:group-hover:text-red-200/90'
+    : 'text-white/55 darkroom:text-red-300/65';
 
   return (
     <div
@@ -66,7 +66,9 @@ export function ExifOverlay({
     >
       {parts.map((p, i) => (
         <span key={`${i}-${p}`}>
-          {i > 0 ? <span className="text-white/35"> · </span> : null}
+          {i > 0 ? (
+            <span className="text-white/35 darkroom:text-red-400/35"> · </span>
+          ) : null}
           {p}
         </span>
       ))}

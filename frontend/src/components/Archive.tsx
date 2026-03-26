@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { genres } from '../data/genres';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
 import { ExifOverlay } from './ExifOverlay';
+import { PhotoLightbox } from './PhotoLightbox';
+import { SafelightImage } from './SafelightImage';
 
 export function Archive() {
   const [activeGenreId, setActiveGenreId] = useState(genres[0]!.id);
@@ -35,7 +37,7 @@ export function Archive() {
   return (
     <section
       id="archive"
-      className="relative bg-black pb-24 pt-16 text-white md:pb-32 md:pt-20"
+      className="relative bg-black pb-24 pt-16 text-white md:pb-32 md:pt-20 darkroom:bg-[#0a0000] darkroom:text-red-100"
       aria-label="More work archive"
     >
       <div className="mx-auto max-w-[min(96rem,calc(100%-2rem))] px-4 md:px-6">
@@ -45,7 +47,7 @@ export function Archive() {
             <div className="md:sticky md:top-[4.5rem] md:max-h-[calc(100dvh-4.5rem)] md:overflow-y-auto md:pr-2">
               {/* Header aligned with GalleryHeader */}
               <header className="mb-8 md:mb-10">
-                <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
+                <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl darkroom:text-red-50">
                   Media Archive
                 </h2>
               </header>
@@ -61,8 +63,8 @@ export function Archive() {
                     }}
                     className={`text-left text-xs tracking-widest transition-colors sm:text-sm ${
                       g.id === activeGenreId
-                        ? 'text-white'
-                        : 'text-white/50 hover:text-white/85'
+                        ? 'text-white darkroom:text-red-100'
+                        : 'text-white/50 hover:text-white/85 darkroom:text-red-400/50 darkroom:hover:text-red-200/90'
                     }`}
                   >
                     {g.label}
@@ -86,36 +88,38 @@ export function Archive() {
                         <button
                           type="button"
                           onClick={() => setSelectedPhotoId(photo.id)}
-                          className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                          className="group relative block w-full overflow-hidden rounded-sm bg-neutral-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 darkroom:bg-red-950/90 darkroom:focus-visible:ring-red-400/60"
                           aria-label={`Open ${photo.title} in fullscreen`}
                         >
-                          <picture>
-                            {photo.avif?.length ? (
-                              <source
-                                type="image/avif"
-                                srcSet={toSrcSet(photo.avif)}
+                          <div className="relative isolate overflow-hidden darkroom:bg-[#3d0606]">
+                            <picture>
+                              {photo.avif?.length ? (
+                                <source
+                                  type="image/avif"
+                                  srcSet={toSrcSet(photo.avif)}
+                                  sizes="(min-width: 768px) 50vw, 100vw"
+                                />
+                              ) : null}
+                              {photo.webp?.length ? (
+                                <source
+                                  type="image/webp"
+                                  srcSet={toSrcSet(photo.webp)}
+                                  sizes="(min-width: 768px) 50vw, 100vw"
+                                />
+                              ) : null}
+                              <SafelightImage
+                                src={fallbackUrl(photo)}
+                                srcSet={toSrcSet(photo.jpg)}
                                 sizes="(min-width: 768px) 50vw, 100vw"
+                                alt={photo.title}
+                                width={photo.width}
+                                height={photo.height}
+                                loading="lazy"
+                                decoding="async"
+                                className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 darkroom:mix-blend-multiply darkroom:grayscale"
                               />
-                            ) : null}
-                            {photo.webp?.length ? (
-                              <source
-                                type="image/webp"
-                                srcSet={toSrcSet(photo.webp)}
-                                sizes="(min-width: 768px) 50vw, 100vw"
-                              />
-                            ) : null}
-                            <img
-                              src={fallbackUrl(photo)}
-                              srcSet={toSrcSet(photo.jpg)}
-                              sizes="(min-width: 768px) 50vw, 100vw"
-                              alt={photo.title}
-                              width={photo.width}
-                              height={photo.height}
-                              loading="lazy"
-                              decoding="async"
-                              className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                            />
-                          </picture>
+                            </picture>
+                          </div>
                           <ExifOverlay
                             exif={photo.exif}
                             emphasizeOnHover
@@ -132,39 +136,10 @@ export function Archive() {
         </div>
       </div>
       {selectedPhoto ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-8"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${selectedPhoto.title} preview`}
-          onClick={() => setSelectedPhotoId(null)}
-        >
-          <button
-            type="button"
-            className="absolute right-4 top-4 rounded bg-black/60 px-3 py-1 text-xs uppercase tracking-widest text-white hover:bg-black/80"
-            onClick={() => setSelectedPhotoId(null)}
-            aria-label="Close fullscreen preview"
-          >
-            Close
-          </button>
-          <div className="relative inline-block max-h-[92vh] max-w-[96vw]">
-            <img
-              src={fallbackUrl(selectedPhoto)}
-              srcSet={toSrcSet(selectedPhoto.jpg)}
-              sizes="96vw"
-              alt={selectedPhoto.title}
-              width={selectedPhoto.width}
-              height={selectedPhoto.height}
-              className="max-h-[92vh] w-auto max-w-[96vw] rounded-sm object-contain shadow-2xl shadow-black/60"
-              onClick={(event) => event.stopPropagation()}
-              decoding="async"
-            />
-            <ExifOverlay
-              exif={selectedPhoto.exif}
-              className="absolute bottom-2 left-2 max-w-[min(96vw-1rem,42rem)] drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]"
-            />
-          </div>
-        </div>
+        <PhotoLightbox
+          photo={selectedPhoto}
+          onClose={() => setSelectedPhotoId(null)}
+        />
       ) : null}
     </section>
   );

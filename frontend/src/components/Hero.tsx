@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Music } from './Music';
 import type { Photo } from '../types';
 import { fallbackUrl, toSrcSet } from '../lib/imageSources';
+import { SafelightImage } from './SafelightImage';
 
 interface HeroProps {
   photo: Photo;
@@ -12,26 +13,28 @@ export function Hero({ photo }: HeroProps) {
 
   return (
     <div className="relative h-full min-h-[100dvh] w-full overflow-hidden">
-      <picture>
-        {photo.avif?.length ? (
-          <source type="image/avif" srcSet={toSrcSet(photo.avif)} sizes="100vw" />
-        ) : null}
-        {photo.webp?.length ? (
-          <source type="image/webp" srcSet={toSrcSet(photo.webp)} sizes="100vw" />
-        ) : null}
-        <img
-          src={fallbackUrl(photo)}
-          srcSet={toSrcSet(photo.jpg)}
-          sizes="100vw"
-          width={photo.width}
-          height={photo.height}
-          alt={photo.title}
-          className="absolute inset-0 h-full w-full object-cover grayscale"
-          decoding="async"
-          fetchPriority="high"
-          loading="eager"
-        />
-      </picture>
+      <div className="absolute inset-0 isolate darkroom:bg-[#3d0606]">
+        <picture>
+          {photo.avif?.length ? (
+            <source type="image/avif" srcSet={toSrcSet(photo.avif)} sizes="100vw" />
+          ) : null}
+          {photo.webp?.length ? (
+            <source type="image/webp" srcSet={toSrcSet(photo.webp)} sizes="100vw" />
+          ) : null}
+          <SafelightImage
+            src={fallbackUrl(photo)}
+            srcSet={toSrcSet(photo.jpg)}
+            sizes="100vw"
+            width={photo.width}
+            height={photo.height}
+            alt={photo.title}
+            className="absolute inset-0 h-full w-full object-cover grayscale darkroom:mix-blend-multiply"
+            decoding="async"
+            fetchPriority="high"
+            loading="eager"
+          />
+        </picture>
+      </div>
       <div
         className="pointer-events-none absolute inset-0 bg-black/5"
         aria-hidden
@@ -46,7 +49,7 @@ export function Hero({ photo }: HeroProps) {
         animate={reducedMotion ? undefined : { opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
-        <p className="text-6xl font-black leading-none tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-7xl md:text-[10.5rem]">
+        <p className="text-6xl font-black leading-none tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] darkroom:text-red-100 darkroom:drop-shadow-[0_2px_24px_rgba(80,0,0,0.55)] sm:text-7xl md:text-[10.5rem]">
           <span className="inline-block align-baseline">Visual</span>
           <br className="sm:hidden" />
           <span>Media</span>

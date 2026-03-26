@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRedLight } from '../hooks/useRedLight';
 
 /**
  * GrainGradient runs continuous WebGL; keep it mounted only while the sticky stage
@@ -56,6 +57,7 @@ export function Blob() {
   const stickyRef = useRef<HTMLDivElement>(null);
   const runGrainShader = useRunGrainShader(stickyRef);
   const reducedMotion = usePrefersReducedMotion();
+  const { enabled: safelight } = useRedLight();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -88,7 +90,7 @@ export function Blob() {
     <section
       ref={sectionRef}
       id="blob"
-      className="relative z-10 min-h-[260vh] bg-black"
+      className="relative z-10 min-h-[260vh] bg-black darkroom:bg-[#0a0000]"
       aria-label="Introduction"
     >
       <div
@@ -102,8 +104,12 @@ export function Blob() {
               width="100%"
               height="100%"
               fit="cover"
-              colors={['#000000', '#ffffff', '#000000']}
-              colorBack="#ffffff"
+              colors={
+                safelight
+                  ? ['#1a0000', '#6b1010', '#1a0000']
+                  : ['#000000', '#ffffff', '#000000']
+              }
+              colorBack={safelight ? '#2a0505' : '#ffffff'}
               softness={0.05}
               intensity={0.19}
               noise={0.2}
@@ -114,19 +120,19 @@ export function Blob() {
             />
           ) : (
             <div
-              className="pointer-events-none absolute inset-0 bg-white"
+              className={`pointer-events-none absolute inset-0 ${safelight ? 'bg-[#2a0505]' : 'bg-white'}`}
               aria-hidden
             />
           )}
         </div>
 
         <motion.div
-          className="absolute left-0 top-0 z-10 h-full w-1/2 bg-black will-change-transform"
+          className="absolute left-0 top-0 z-10 h-full w-1/2 bg-black will-change-transform darkroom:bg-[#2a0000]"
           style={{ x: leftCurtainX }}
           aria-hidden
         />
         <motion.div
-          className="absolute right-0 top-0 z-10 h-full w-1/2 bg-black will-change-transform"
+          className="absolute right-0 top-0 z-10 h-full w-1/2 bg-black will-change-transform darkroom:bg-[#2a0000]"
           style={{ x: rightCurtainX }}
           aria-hidden
         />
@@ -136,14 +142,18 @@ export function Blob() {
           or non-opaque *ancestor* would isolate the blend and the text would stay plain white.
         */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center mix-blend-difference"
+          className={`pointer-events-none absolute inset-0 z-20 flex items-center justify-center ${safelight ? 'mix-blend-normal' : 'mix-blend-difference'}`}
           style={{ y: textY, opacity: textOpacity }}
         >
           <div className="flex w-full max-w-5xl flex-col px-6">
-            <h2 className="text-center text-5xl font-black lowercase tracking-tight text-white sm:text-7xl md:text-9xl">
+            <h2
+              className={`text-center text-5xl font-black lowercase tracking-tight sm:text-7xl md:text-9xl ${safelight ? 'text-red-200' : 'text-white'}`}
+            >
               vino.mp4
             </h2>
-            <p className="mt-2 max-w-xl self-center pl-0 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:self-start sm:pl-60 sm:text-sm">
+            <p
+              className={`mt-2 max-w-xl self-center pl-0 text-center text-xs font-medium uppercase tracking-[0.4em] sm:self-start sm:pl-60 sm:text-sm ${safelight ? 'text-red-300/90' : 'text-white'}`}
+            >
               Visual media in NYC
             </p>
           </div>

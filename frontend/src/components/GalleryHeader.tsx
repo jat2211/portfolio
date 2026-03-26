@@ -12,14 +12,16 @@ export function GalleryHeader() {
       viewport={{ once: true, amount: 0.3 }}
     >
       <div className="space-y-2">
-        <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
+        <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl darkroom:text-red-50">
           Featured Work
         </h2>
-        <p className="text-lg text-neutral-500 sm:text-xl">{"'23 - '25"}</p>
+        <p className="text-lg text-neutral-500 sm:text-xl darkroom:text-red-400/70">
+          {"'23 - '25"}
+        </p>
       </div>
       <a
         href="#gallery"
-        className="shrink-0 text-base font-medium tracking-wide text-white/80 transition-colors hover:text-white sm:pt-2 sm:text-lg"
+        className="shrink-0 text-base font-medium tracking-wide text-white/80 transition-colors hover:text-white sm:pt-2 sm:text-lg darkroom:text-red-300/85 darkroom:hover:text-red-50"
       >
         {"See All Work ->"}
       </a>

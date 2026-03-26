@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dump-photo-metadata": "node scripts/dump-photo-metadata.mjs"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.72",

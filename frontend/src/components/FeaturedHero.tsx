@@ -33,8 +33,9 @@ export function FeaturedHero({ photo }: FeaturedHeroProps) {
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
         <p className="text-6xl font-black leading-none tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-7xl md:text-[10.5rem]">
-          <span className="inline-block align-baseline">Visual</span>{' '}
-          Media
+          <span className="inline-block align-baseline">Visual</span>
+          <br className="sm:hidden" />
+          <span>Media</span>
         </p>
       </motion.div>
       <motion.div

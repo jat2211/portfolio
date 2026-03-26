@@ -12,10 +12,6 @@ export function AllVisualMediaArchive() {
   const rightColumnPhotos = active.photos.filter((_, index) => index % 2 === 1);
 
   useEffect(() => {
-    setSelectedPhotoId(null);
-  }, [activeGenreId]);
-
-  useEffect(() => {
     if (!selectedPhoto) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -57,7 +53,10 @@ export function AllVisualMediaArchive() {
                   <button
                     key={g.id}
                     type="button"
-                    onClick={() => setActiveGenreId(g.id)}
+                    onClick={() => {
+                      setSelectedPhotoId(null);
+                      setActiveGenreId(g.id);
+                    }}
                     className={`text-left text-xs tracking-widest transition-colors sm:text-sm ${
                       g.id === activeGenreId
                         ? 'text-white'

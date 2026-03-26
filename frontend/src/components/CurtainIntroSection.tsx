@@ -109,6 +109,7 @@ export function CurtainIntroSection() {
               shape="blob"
               speed={reducedMotion ? 0 : 0.72}
               scale={1.16}
+              offsetY={-0.3}
             />
           ) : (
             <div
@@ -141,7 +142,7 @@ export function CurtainIntroSection() {
             <h2 className="text-center text-5xl font-black lowercase tracking-tight text-white sm:text-7xl md:text-9xl">
               vino.mp4
             </h2>
-            <p className="mt-2 max-w-xl self-start pl-6 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:pl-60 sm:text-sm uppercase">
+            <p className="mt-2 max-w-xl self-center pl-0 text-center text-xs font-medium uppercase tracking-[0.4em] text-white sm:self-start sm:pl-60 sm:text-sm">
               Visual media in NYC
             </p>
           </div>

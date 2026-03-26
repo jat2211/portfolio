@@ -1013,498 +1013,6 @@ export const featuredGallery: PublicImage[] = [
 ];
 
 export const genrePublicImages: Record<string, PublicImage[]> = {
-  "bw": [
-    {
-      "width": 4000,
-      "height": 5000,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.jpg",
-          "width": 4000
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.webp",
-          "width": 4000
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.avif",
-          "width": 4000
-        }
-      ]
-    },
-    {
-      "width": 3450,
-      "height": 2300,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.jpg",
-          "width": 3450
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.webp",
-          "width": 3450
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.avif",
-          "width": 3450
-        }
-      ]
-    },
-    {
-      "width": 4000,
-      "height": 6000,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.jpg",
-          "width": 4000
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.webp",
-          "width": 4000
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.avif",
-          "width": 4000
-        }
-      ]
-    },
-    {
-      "width": 3954,
-      "height": 4943,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-3954.jpg",
-          "width": 3954
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-3954.webp",
-          "width": 3954
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0410-3954.avif",
-          "width": 3954
-        }
-      ]
-    },
-    {
-      "width": 4233,
-      "height": 5291,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-4233.jpg",
-          "width": 4233
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-4233.webp",
-          "width": 4233
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_0412-4233.avif",
-          "width": 4233
-        }
-      ]
-    },
-    {
-      "width": 5334,
-      "height": 4267,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-5334.jpg",
-          "width": 5334
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-5334.webp",
-          "width": 5334
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_7766-5334.avif",
-          "width": 5334
-        }
-      ]
-    },
-    {
-      "width": 4381,
-      "height": 6571,
-      "jpg": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-480.jpg",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-720.jpg",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-960.jpg",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-1200.jpg",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-4381.jpg",
-          "width": 4381
-        }
-      ],
-      "webp": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-480.webp",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-720.webp",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-960.webp",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-1200.webp",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-4381.webp",
-          "width": 4381
-        }
-      ],
-      "avif": [
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-480.avif",
-          "width": 480
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-720.avif",
-          "width": 720
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-960.avif",
-          "width": 960
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-1200.avif",
-          "width": 1200
-        },
-        {
-          "url": "/_optimized/gallery/bw/CR7_9705-4381.avif",
-          "width": 4381
-        }
-      ]
-    }
-  ],
   "portraits": [
     {
       "width": 3790,
@@ -2182,6 +1690,498 @@ export const genrePublicImages: Record<string, PublicImage[]> = {
         }
       ],
       "avif": []
+    }
+  ],
+  "bw": [
+    {
+      "width": 4000,
+      "height": 5000,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.jpg",
+          "width": 4000
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.webp",
+          "width": 4000
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065475526-303611542-4000.avif",
+          "width": 4000
+        }
+      ]
+    },
+    {
+      "width": 3450,
+      "height": 2300,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.jpg",
+          "width": 3450
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.webp",
+          "width": 3450
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065564880-710151625-3450.avif",
+          "width": 3450
+        }
+      ]
+    },
+    {
+      "width": 4000,
+      "height": 6000,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.jpg",
+          "width": 4000
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.webp",
+          "width": 4000
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/1734065615999-283697376-4000.avif",
+          "width": 4000
+        }
+      ]
+    },
+    {
+      "width": 3954,
+      "height": 4943,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-3954.jpg",
+          "width": 3954
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-3954.webp",
+          "width": 3954
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0410-3954.avif",
+          "width": 3954
+        }
+      ]
+    },
+    {
+      "width": 4233,
+      "height": 5291,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-4233.jpg",
+          "width": 4233
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-4233.webp",
+          "width": 4233
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_0412-4233.avif",
+          "width": 4233
+        }
+      ]
+    },
+    {
+      "width": 5334,
+      "height": 4267,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-5334.jpg",
+          "width": 5334
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-5334.webp",
+          "width": 5334
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_7766-5334.avif",
+          "width": 5334
+        }
+      ]
+    },
+    {
+      "width": 4381,
+      "height": 6571,
+      "jpg": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-480.jpg",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-720.jpg",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-960.jpg",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-1200.jpg",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-4381.jpg",
+          "width": 4381
+        }
+      ],
+      "webp": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-480.webp",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-720.webp",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-960.webp",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-1200.webp",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-4381.webp",
+          "width": 4381
+        }
+      ],
+      "avif": [
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-480.avif",
+          "width": 480
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-720.avif",
+          "width": 720
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-960.avif",
+          "width": 960
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-1200.avif",
+          "width": 1200
+        },
+        {
+          "url": "/_optimized/gallery/bw/CR7_9705-4381.avif",
+          "width": 4381
+        }
+      ]
     }
   ],
   "landscape": [

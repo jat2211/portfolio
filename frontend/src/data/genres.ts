@@ -18,8 +18,8 @@ export interface Genre {
 }
 
 const GENRE_DEFS: { id: string; label: string }[] = [
-  { id: 'bw', label: 'Black and white' },
   { id: 'portraits', label: 'Portraits' },
+  { id: 'bw', label: 'Black and white' },
   { id: 'landscape', label: 'Landscape' },
   { id: 'street', label: 'Street' },
 ];

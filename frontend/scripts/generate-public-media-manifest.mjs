@@ -17,7 +17,7 @@ const WEBP_QUALITY = 68;
 const JPG_QUALITY = 76;
 let avifEncodingEnabled = true;
 
-const GENRE_IDS = ['bw', 'portraits', 'landscape', 'street'];
+const GENRE_IDS = ['portraits', 'bw', 'landscape', 'street'];
 
 function listImageNames(relPosix) {
   const dir = path.join(publicDir, ...relPosix.split('/'));

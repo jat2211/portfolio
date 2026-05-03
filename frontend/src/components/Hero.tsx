@@ -20,7 +20,6 @@ export function Hero({ photo, videoUrl }: HeroProps) {
           <video
             className="absolute inset-0 h-full w-full object-cover grayscale darkroom:mix-blend-multiply"
             src={videoUrl}
-            poster={fallbackUrl(photo)}
             autoPlay
             muted
             loop

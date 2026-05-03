@@ -6,34 +6,48 @@ import { SafelightImage } from './SafelightImage';
 
 interface HeroProps {
   photo: Photo;
+  /** When provided, renders a looping background video instead of the photo. */
+  videoUrl?: string;
 }
 
-export function Hero({ photo }: HeroProps) {
+export function Hero({ photo, videoUrl }: HeroProps) {
   const reducedMotion = useReducedMotion();
 
   return (
     <div className="relative h-full min-h-[100dvh] w-full overflow-hidden">
       <div className="absolute inset-0 isolate darkroom:bg-[#3d0606]">
-        <picture>
-          {photo.avif?.length ? (
-            <source type="image/avif" srcSet={toSrcSet(photo.avif)} sizes="100vw" />
-          ) : null}
-          {photo.webp?.length ? (
-            <source type="image/webp" srcSet={toSrcSet(photo.webp)} sizes="100vw" />
-          ) : null}
-          <SafelightImage
-            src={fallbackUrl(photo)}
-            srcSet={toSrcSet(photo.jpg)}
-            sizes="100vw"
-            width={photo.width}
-            height={photo.height}
-            alt={photo.title}
+        {videoUrl ? (
+          <video
             className="absolute inset-0 h-full w-full object-cover grayscale darkroom:mix-blend-multiply"
-            decoding="async"
-            fetchPriority="high"
-            loading="eager"
+            src={videoUrl}
+            poster={fallbackUrl(photo)}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
-        </picture>
+        ) : (
+          <picture>
+            {photo.avif?.length ? (
+              <source type="image/avif" srcSet={toSrcSet(photo.avif)} sizes="100vw" />
+            ) : null}
+            {photo.webp?.length ? (
+              <source type="image/webp" srcSet={toSrcSet(photo.webp)} sizes="100vw" />
+            ) : null}
+            <SafelightImage
+              src={fallbackUrl(photo)}
+              srcSet={toSrcSet(photo.jpg)}
+              sizes="100vw"
+              width={photo.width}
+              height={photo.height}
+              alt={photo.title}
+              className="absolute inset-0 h-full w-full object-cover grayscale darkroom:mix-blend-multiply"
+              decoding="async"
+              fetchPriority="high"
+              loading="eager"
+            />
+          </picture>
+        )}
       </div>
       <div
         className="pointer-events-none absolute inset-0 bg-black/5"

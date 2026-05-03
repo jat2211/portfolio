@@ -37,7 +37,7 @@ function App() {
       <main className="relative">
         {/* Fixed hero: stays put while content below scrolls over it (scroll-over / curtain reveal). */}
         <div className="pointer-events-none fixed inset-0 z-0">
-          <Hero photo={featuredPhoto} />
+          <Hero photo={featuredPhoto} videoUrl="/hero/video/cig_scene_hero.mp4" />
         </div>
         {/* In-flow height so the page can scroll past the viewport while the hero stays fixed. */}
         <div id="hero" className="h-[100dvh] shrink-0" aria-hidden />
